@@ -103,6 +103,8 @@
                        (str/replace template-re {"{{published}}" published, "{{last-updated}}" last-updated})
                        (wrap-boilerplate title)))
 
+             (println (str "posts/" file-name " compiled"))
+
              ; record times
              (db-swap! assoc-in [:posts file-name :last-compiled] (System/currentTimeMillis))
              (db-swap! assoc-in [:posts file-name :post/published] published)
@@ -114,6 +116,10 @@
              (db-swap! assoc-in [:posts (fs/file-name file-path) :retry?] true)
              (println (str (fs/file-name file-path) " failed to compile. Problem: " e)))))))
 
+
+; ----------------------------------------------------------------------------------------------------------------------
+
+(compile)
 
 ; ----------------------------------------------------------------------------------------------------------------------
 
