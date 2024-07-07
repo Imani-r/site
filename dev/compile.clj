@@ -1,34 +1,13 @@
-#!/usr/bin/env  bb
+#!/usr/bin/env bb
 
 (require
   '[babashka.fs :as fs]
   '[clojure.string :as str]
-  '[clojure.edn :as edn]
-  '[clojure.java.io :as io]
-  '[clojure.pprint :refer [pprint]])
-
-; --- db.edn -----------------------------------------------------------------------------------------------------------
-
-(def db
-  (atom
-    (with-open [r (java.io.PushbackReader. (io/reader "dev/db.edn"))]
-      (edn/read r))))
-
-; Keep dev/db.edn in sync with a watch on the atom
-(add-watch db :sync
-  (fn [_key _ref _old-state new-state]
-    (with-open [w (io/writer "dev/db.edn")]
-      (pprint new-state w))))
-
-(comment
-  db
-  (swap! db assoc :foo "bar")
-  (swap! db dissoc :foo)
-  )
+  '[utils :refer [cli? base-path db]])
 
 ; ----------------------------------------------------------------------------------------------------------------------
 
-(def post-paths (fs/list-dir "dev/posts_content"))
+(def post-paths (fs/list-dir (str base-path "posts_content")))
 
 (defn- modified?
   [path]
@@ -45,7 +24,7 @@
 
 (defn wrap-boilerplate
   [raw-body title]
-  (-> (slurp "dev/boilerplate.html")
+  (-> (slurp (str base-path "boilerplate.html"))
       (str/replace template-re {"{{title}}" title, "{{body}}" raw-body})))
 
 (defn today []
@@ -93,7 +72,7 @@
                  published (get-in @db [:posts file-name :published] today)
                  last-updated (if-not (= published today) today "")]
 
-             (spit (str "posts/" file-name)
+             (spit (str (when-not cli? "../") "posts/" file-name)
                    (-> raw-body
                        (str/replace template-re {"{{published}}" published, "{{last-updated}}" last-updated})
                        (wrap-boilerplate title)))
@@ -114,7 +93,11 @@
 
 ; ----------------------------------------------------------------------------------------------------------------------
 
-(compile)
+(defn -main [& _args]
+  (compile))
+
+(when cli?
+  (apply -main *command-line-args*))
 
 ; ----------------------------------------------------------------------------------------------------------------------
 

@@ -126,3 +126,15 @@ And that's it! (Assuming you pushed to `main`) GitHub will 'build and deploy' yo
 [here](https://github.com/Imani-r/site/actions) — and they will be live.
 
 Not too bad, eh?
+
+## [ADVANCED:] `.clj` scripts development
+
+### REPLing
+
+```shell
+cd dev
+bb --config ../bb.edn nrepl-server 1667
+```
+
+(Bit of a weird solution, but otherwise either **(1)** the REPL cannot 'see' the `.clj` files — probably some classpath
+issue? — or **(2)** calling them from the terminal, here at the root, is obnoxious — needing its own `--config` or so.)
