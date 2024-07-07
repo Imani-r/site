@@ -127,6 +127,9 @@
 ; TODO: posts without some kind of 'DRAFT' header are automatically published with today's date if not yet published
 ; TODO: collect post tags; generate tag index page
 
+; TODO 'edit' script to edit filename
+; TODO 'delete' script to delete post draft (and clean up the db)
+
 (comment
   (compile)
   )
