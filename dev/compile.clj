@@ -5,30 +5,25 @@
   '[clojure.string :as str]
   '[clojure.edn :as edn]
   '[clojure.java.io :as io]
-  '[clojure.pprint :refer [pprint]]
-  '[hiccup2.core :as h])
+  '[clojure.pprint :refer [pprint]])
 
 ; --- db.edn -----------------------------------------------------------------------------------------------------------
 
-(def ^:dynamic db
-  (with-open [r (java.io.PushbackReader. (io/reader "dev/db.edn"))]
-    (edn/read r)))
+(def db
+  (atom
+    (with-open [r (java.io.PushbackReader. (io/reader "dev/db.edn"))]
+      (edn/read r))))
 
-(defn db-swap!
-  [f & args]
-  (let [db' (apply f db args)]
-    ; save to file
+; Keep dev/db.edn in sync with a watch on the atom
+(add-watch db :sync
+  (fn [_key _ref _old-state new-state]
     (with-open [w (io/writer "dev/db.edn")]
-      (pprint db' w))
-    ; save locally
-    (alter-var-root #'db (constantly db'))
-    ; return
-    db'))
+      (pprint new-state w))))
 
 (comment
   db
-  (db-swap! assoc :foo "bar")
-  (db-swap! dissoc :foo)
+  (swap! db assoc :foo "bar")
+  (swap! db dissoc :foo)
   )
 
 ; ----------------------------------------------------------------------------------------------------------------------
@@ -38,13 +33,13 @@
 (defn- modified?
   [path]
   (> (fs/file-time->millis (fs/last-modified-time path))
-     (or (get-in db [:posts (fs/file-name path) :file/last-modified])
+     (or (get-in @db [:posts (fs/file-name path) :file/last-modified])
          ##-Inf)))
 
 (defn- content-changed?
   [path]
   (not= (hash (slurp (str path)))
-        (get-in db [:posts (fs/file-name path) :file/hash])))
+        (get-in @db [:posts (fs/file-name path) :file/hash])))
 
 (def template-re #"\{\{.*\}\}")
 
@@ -61,7 +56,7 @@
 (defn compile []
   (let [modified-files-paths (filter modified? post-paths)
         ; save new :last-modified times
-        _ (db-swap! update :posts
+        _ (swap! db update :posts
             #(merge-with merge %
                (reduce (fn [m file-path]
                          (assoc m
@@ -71,7 +66,7 @@
 
         changed-files-paths (filter content-changed? modified-files-paths)
         ; save new `:hash`es
-        _ (db-swap! update :posts
+        _ (swap! db update :posts
             #(merge-with merge %
                (reduce (fn [m file-path]
                          (assoc m
@@ -79,9 +74,9 @@
                            {:file/hash (hash (slurp (str file-path)))}))
                        {} changed-files-paths)))
 
-        retry-files-paths (filterv #(get-in db [:posts (fs/file-name %) :retry?]) post-paths)
+        retry-files-paths (filterv #(get-in @db [:posts (fs/file-name %) :retry?]) post-paths)
         ; 'consume' all :retry? flags
-        _ (db-swap! update :posts
+        _ (swap! db update :posts
             #(merge %
                (reduce (fn [m [file-name post-m]]
                          (assoc m file-name (dissoc post-m :retry?)))
@@ -95,7 +90,7 @@
                  title (re-find #"(?<=id=\"title\">).*(?=<)" raw-body)
 
                  today (today)
-                 published (get-in db [:posts file-name :published] today)
+                 published (get-in @db [:posts file-name :published] today)
                  last-updated (if-not (= published today) today "")]
 
              (spit (str "posts/" file-name)
@@ -106,14 +101,14 @@
              (println (str "posts/" file-name " compiled"))
 
              ; record times
-             (db-swap! assoc-in [:posts file-name :last-compiled] (System/currentTimeMillis))
-             (db-swap! assoc-in [:posts file-name :post/published] published)
+             (swap! db assoc-in [:posts file-name :last-compiled] (System/currentTimeMillis))
+             (swap! db assoc-in [:posts file-name :post/published] published)
              (when (seq last-updated)
-               (db-swap! assoc-in [:posts file-name :post/last-updated] last-updated)))
+               (swap! db assoc-in [:posts file-name :post/last-updated] last-updated)))
 
            (catch Exception e
              ; make note that retry is needed
-             (db-swap! assoc-in [:posts (fs/file-name file-path) :retry?] true)
+             (swap! db assoc-in [:posts (fs/file-name file-path) :retry?] true)
              (println (str (fs/file-name file-path) " failed to compile. Problem: " e)))))))
 
 
