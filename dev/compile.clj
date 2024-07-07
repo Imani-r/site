@@ -106,9 +106,6 @@
 
 ; TODO: collect post tags; generate tag index page
 
-; TODO 'edit' script to edit filename
-; TODO 'delete' script to delete post draft (and clean up the db)
-
 (comment
   (compile)
   )

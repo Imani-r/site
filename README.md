@@ -90,12 +90,25 @@ You may then open the new post (say, in [VSCode](https://code.visualstudio.com/)
 
 Do not do this manually! Because `dev/db.edn` might get out of sync with the rest of the repo.
 
-Instead, if you wish to edit an existing post's file name (and therefore its `/posts/<post_file_name>.html}` URL), from
-a terminal at the root of this project, call:
+Instead, if you wish to rename an existing post's file name (and therefore its `/posts/<post_file_name>.html}` URL),
+from a terminal at the root of this project, call:
 
 ```shell
 dev/rename.clj <old name> : <new name>
 ```
+
+### Deleting post files
+
+Similarly, if you wish to delete a post, from a terminal at the root of this project call:
+
+```shell
+dev/delete.clj <post file name>
+```
+
+> [!WARNING]
+> This will delete **all** relevant files in `dev/posts_content`, `drafts/` and `posts/`. So be careful!
+>
+> (If you delete an already published post by mistake, there is a way to undo that via `git`. Talk to me! :P )
 
 ### Compiling drafts
 
