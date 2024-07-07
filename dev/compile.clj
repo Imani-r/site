@@ -64,20 +64,23 @@
     ; recompile changed posts
     (doseq [file-path (concat changed-files-paths retry-files-paths)]
       (try (let [raw-body (slurp (str file-path))
+                 draft? (boolean (re-find #"^\s*\<\!\-\- DRAFT" raw-body))
                  file-name (fs/file-name file-path)
                  ; NOTE: title extraction depends on the title element having id="title"
                  title (re-find #"(?<=id=\"title\">).*(?=<)" raw-body)
 
                  today (today)
-                 published (get-in @db [:posts file-name :published] today)
-                 last-updated (if-not (= published today) today "")]
+                 published (if draft? "DRAFT" (get-in @db [:posts file-name :published] today))
+                 last-updated (if (or (= published today) draft?) "" today)]
 
-             (spit (str (when-not cli? "../") "posts/" file-name)
+             (spit (str (when-not cli? "../")
+                        (if draft? "drafts/" "posts/")
+                        file-name)
                    (-> raw-body
                        (str/replace template-re {"{{published}}" published, "{{last-updated}}" last-updated})
                        (wrap-boilerplate title)))
 
-             (println (str "posts/" file-name " compiled"))
+             (println (str (if draft? "drafts/" "posts/") file-name " compiled"))
 
              ; record times
              (swap! db assoc-in [:posts file-name :last-compiled] (System/currentTimeMillis))
@@ -101,8 +104,6 @@
 
 ; ----------------------------------------------------------------------------------------------------------------------
 
-; TODO: 'new post' script, that templates things
-; TODO: posts without some kind of 'DRAFT' header are automatically published with today's date if not yet published
 ; TODO: collect post tags; generate tag index page
 
 ; TODO 'edit' script to edit filename

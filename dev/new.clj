@@ -1,7 +1,6 @@
 #!/usr/bin/env  bb
 
 (require
-  '[babashka.cli :as cli]
   '[babashka.fs :as fs]
   '[clojure.string :as str])
 

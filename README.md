@@ -97,6 +97,18 @@ a terminal at the root of this project, call:
 dev/rename.clj <old name> : <new name>
 ```
 
+### Compiling drafts
+
+By default, a new post is created with a `<!-- DRAFT: ... -->` comment that indicates to the code in [`dev/compile.clj`](./dev/compile.clj)
+to 'compile' the post content to `drafts/`, not `posts/`. This `drafts/` directory is [invisible to git](./.gitignore),
+meaning it will never be made public.
+
+To see what these draft posts will look like once published, [run the local web server](#Running_locally) and go to
+`localhost:8080/drafs/<post file name>.html`.
+
+When you are ready to [publish](#Publishing_posts) a draft, simply delete the `<!-- DRAFT: ... ->` comment and follow
+the steps below.
+
 ### Publishing posts
 
 There are two steps to publishing a finished `dev/posts_content` post:
