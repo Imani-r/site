@@ -90,7 +90,7 @@ You may then open the new post (say, in [VSCode](https://code.visualstudio.com/)
 
 Do not do this manually! Because `dev/db.edn` might get out of sync with the rest of the repo.
 
-Instead, if you wish to rename an existing post's file name (and therefore its `/posts/<post_file_name>.html}` URL),
+Instead, if you wish to rename an existing post's file name (and therefore its `/posts/<post_file_name>.html` URL),
 from a terminal at the root of this project, call:
 
 ```shell
@@ -124,12 +124,12 @@ the steps below.
 
 ### Publishing posts
 
-There are two steps to publishing a finished `dev/posts_content` post:
+There are two steps to publishing a finished `dev/posts_content/` post:
   1. From a terminal at the root of this project, call `dev/compile.clj`. This will compile **all** `dev/posts_content/`
      posts that have changed since last calling `dev/compile.clj` to `posts/`; injecting appropriate `{{published}}` and
      `{{last-updated}}` dates; etc.
-  2. *Committing* and *pushing* the compiled `posts/` to GitHub, so that [GitHub Pages](https://pages.github.com) can
-     host them.
+  2. *Committing* and *pushing* the compiled `posts/` (and any other changed files, e.g. `dev/db.edn`) to GitHub, so that 
+     [GitHub Pages](https://pages.github.com) can host them.
 
 In the terminal, the latter is done like so. (But you may prefer to use [VSCode](https://code.visualstudio.com/)'s git
 UI — which makes use of the same concepts.)
@@ -146,7 +146,7 @@ git push
 ```
 
 And that's it! (Assuming you pushed to `main`) GitHub will 'build and deploy' your posts — which you can keep an eye on
-[here](https://github.com/Imani-r/site/actions) — and they will be live.
+[here](https://github.com/Imani-r/site/actions) — then they will be live.
 
 Not too bad, eh?
 
