@@ -135,10 +135,8 @@ In the terminal, the latter is done like so. (But you may prefer to use [VSCode]
 UI — which makes use of the same concepts.)
 
 ```shell
-# 'Stage' the files you wish to publish, either naming them individually
-git add posts/foo.html posts/bar.html ...
-# Or all at once:
-git add posts/
+# 'Stage' all changed files
+git add .
 
 # Then, 'commit' the staged files with a message
 git commit -m 'A couple new posts'

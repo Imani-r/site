@@ -6,8 +6,8 @@
   '[utils :refer [cli? base-path db]])
 
 (defn -main [& args]
-  (try (let [[_ n n' :as parts] (->> (str/join " " args)
-                                     (re-find #"(.*)\s+:\s+(.*)"))
+  (try (let [[_ n n'] (->> (str/join " " args)
+                           (re-find #"(.*)\s+:\s+(.*)"))
              _ (assert (some? n))
              _ (assert (some? n'))
              [n n'] (map #(str (str/replace % " " "_") ".html") [n n'])
@@ -25,9 +25,7 @@
                  (fs/move old-path-str new-path-str))
                ; Update db
                (swap! db update :posts
-                      (fn [m] (update-keys #(if (= % n) n' %) m)))
-
-               (update-keys {:foo 1 :bar 2} {:foo :baz})
+                 (fn [m] (update-keys m #(if (= % n) n' %))))
 
                (println (str "Renamed " n " -> " n')))
            (println (str "ERROR: " n " doesn't exist"))))
