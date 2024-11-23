@@ -6,7 +6,7 @@
 
 (if *command-line-args*
   (let [n (str/join "_" *command-line-args*)
-        path-str (str "dev/posts_content/" n ".html")]
+        path-str (str "dev/drafts/" n ".html")]
     (if (fs/exists? path-str)
       (println (str "ERROR: " n ".html already taken"))
       (do (spit path-str (slurp "dev/post-template.html"))

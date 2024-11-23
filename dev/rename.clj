@@ -11,9 +11,9 @@
              _ (assert (some? n))
              _ (assert (some? n'))
              [n n'] (map #(str (str/replace % " " "_") ".html") [n n'])
-             path-str-bases [(str (when-not cli? "../") "drafts/")
+             path-str-bases [(str (when-not cli? "../") "post_drafts/")
                              (str (when-not cli? "../") "posts/")
-                             (str base-path "posts_content/")]
+                             (str base-path "drafts/")]
              old-path-str->new (->> path-str-bases
                                     (keep (fn [base-path-str]
                                             (when (fs/exists? (str base-path-str n))

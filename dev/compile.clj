@@ -7,7 +7,7 @@
 
 ; ----------------------------------------------------------------------------------------------------------------------
 
-(def post-paths (fs/list-dir (str base-path "posts_content")))
+(def post-paths (fs/list-dir (str base-path "drafts")))
 
 (defn- modified?
   [path]
@@ -74,13 +74,13 @@
                  last-updated (if (or (= published today) draft?) "" today)]
 
              (spit (str (when-not cli? "../")
-                        (if draft? "drafts/" "posts/")
+                        (if draft? "post_drafts/" "posts/")
                         file-name)
                    (-> raw-body
                        (str/replace template-re {"{{published}}" published, "{{last-updated}}" last-updated})
                        (wrap-boilerplate title)))
 
-             (println (str (if draft? "drafts/" "posts/") file-name " compiled"))
+             (println (str (if draft? "post_drafts/" "posts/") file-name " compiled"))
 
              ; record times
              (swap! db assoc-in [:posts file-name :last-compiled] (System/currentTimeMillis))

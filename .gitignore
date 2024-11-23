@@ -15,5 +15,5 @@ pom.xml.asc
 .clj-kondo/.cache
 .lsp/
 
-/dev/posts_content/*
-/drafts/*
+/dev/drafts/*
+/post_drafts/*

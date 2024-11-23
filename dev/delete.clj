@@ -7,9 +7,9 @@
 
 (defn -main [& args]
   (let [n (-> (str/join "_" args) (str ".html"))
-        path-strs (->> [(str (when-not cli? "../") "drafts/" n)
+        path-strs (->> [(str (when-not cli? "../") "post_drafts/" n)
                         (str (when-not cli? "../") "posts/" n)
-                        (str base-path "posts_content/" n)]
+                        (str base-path "drafts/" n)]
                        (filter fs/exists?))]
     (if (seq path-strs)
       (do ; Delete all files

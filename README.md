@@ -72,7 +72,7 @@ same as the post's eventual title.) It may include spaces, but you should avoid 
 
 ```shell
 dev/new.clj Hello World
-# dev/posts_content/Hello_World.html created
+# dev/drafts/Hello_World.html created
 ```
 
 > [!NOTE]
@@ -106,14 +106,14 @@ dev/delete.clj <post file name>
 ```
 
 > [!WARNING]
-> This will delete **all** relevant files in `dev/posts_content`, `drafts/` and `posts/`. So be careful!
+> This will delete **all** relevant files in `dev/drafts`, `post_drafts/` and `posts/`. So be careful!
 >
 > (If you delete an already published post by mistake, there is a way to undo that via `git`. Talk to me! :P )
 
 ### Compiling drafts
 
 By default, a new post is created with a `<!-- DRAFT: ... -->` comment that indicates to the code in [`dev/compile.clj`](./dev/compile.clj)
-to 'compile' the post content to `drafts/`, not `posts/`. This `drafts/` directory is [invisible to git](./.gitignore),
+to 'compile' the post content to `post_drafts/`, not `posts/`. This `post_drafts/` directory is [invisible to git](./.gitignore),
 meaning it will never be made public.
 
 To see what these draft posts will look like once published, [run the local web server](#Running_locally) and go to
@@ -124,11 +124,11 @@ the steps below.
 
 ### Publishing posts
 
-There are two steps to publishing a finished `dev/posts_content/` post:
-  1. From a terminal at the root of this project, call `dev/compile.clj`. This will compile **all** `dev/posts_content/`
+There are two steps to publishing a finished `dev/drafts/` post:
+  1. From a terminal at the root of this project, call `dev/compile.clj`. This will compile **all** `dev/drafts/`
      posts that have changed since last calling `dev/compile.clj` to `posts/`; injecting appropriate `{{published}}` and
      `{{last-updated}}` dates; etc.
-  2. *Committing* and *pushing* the compiled `posts/` (and any other changed files, e.g. `dev/db.edn`) to GitHub, so that 
+  2. *Committing* and *pushing* the compiled `posts/` (and any other changed files, e.g. `dev/db.edn`) to GitHub, so that
      [GitHub Pages](https://pages.github.com) can host them.
 
 In the terminal, the latter is done like so. (But you may prefer to use [VSCode](https://code.visualstudio.com/)'s git
