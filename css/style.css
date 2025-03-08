@@ -1,9 +1,39 @@
-.title-card {
-  border: 1px solid black;
+@import url('https://fonts.googleapis.com/css2?family=Karla:ital,wght@0,200..800;1,200..800&display=swap');
+
+:root {
+  --global-font:  'Karla', sans-serif;
+}
+/* FONTS */
+p {
+  font-family: var(--global-font);
+}
+
+/* Top Nagigation Styling */
+.topnav {
+  background-color: aquamarine;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.topnav a {
+  text-decoration: none;
+}
+
+/* Change the color of links on hover */
+.topnav a:hover {
+  color: orange;
+
+/* #home {
+  font-size: large;
+} */
+
+h1 {
+  text-align: center ;
 }
 
 p {
-  color: red;
+  color: #144e56;
   margin-bottom: 1rem;
 }
 
