@@ -4,8 +4,10 @@
   --global-font:  'Karla', sans-serif;
 }
 /* FONTS */
-p {
+p, ul li {
   font-family: var(--global-font);
+  color: #144e56;
+  margin-bottom: 1rem;
 }
 
 /* Top Nagigation Styling */
@@ -32,12 +34,6 @@ p {
 h1 {
   text-align: center;
 }
-
-p {
-  color: #144e56;
-  margin-bottom: 1rem;
-}
-
 
 
 #profile_photo {
