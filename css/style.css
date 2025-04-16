@@ -27,15 +27,18 @@ p {
 /* #home {
   font-size: large;
 } */
+}
 
 h1 {
-  text-align: center ;
+  text-align: center;
 }
 
 p {
   color: #144e56;
   margin-bottom: 1rem;
 }
+
+
 
 #profile_photo {
   width: 200px;
