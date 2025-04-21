@@ -31,7 +31,10 @@ p, ul li {
 } */
 }
 
-h1 {
+h1, h2, h3 {
+  font-family: var(--global-font);
+  color: #144e56;
+  margin-bottom: 1rem;
   text-align: center;
 }
 
@@ -45,4 +48,8 @@ h1 {
 #profile_photo img {
   width: 100%;
   height: 100%;
+}
+
+.fit-image {
+  width: 500px;
 }
