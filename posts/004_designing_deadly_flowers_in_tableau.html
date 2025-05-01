@@ -30,509 +30,519 @@
       <a href="../now.html">Now</a>
     </div>
 
-    <h1>Designing Deadly Flowers in Tableau</h1>
+    <!-- Added responsive container to wrap all content below the navigation -->
+    <div class="responsive-container">
+      <h1>Designing Deadly Flowers in Tableau</h1>
 
-    <h2>Getting Started</h2>
+      <h2>Getting Started</h2>
 
-    <p>
-      I created this visualization,
-      <a
-        href="https://public.tableau.com/app/profile/faith5698/viz/DeathfromNaturalDisastersMakeoverMonday/LightMode"
-        target="_blank"
-        rel="noopener noreferrer"
-        >"Death from Natural Disasters</a
-      >, for a Makeover Monday challenge, a
-      <a
-        href="https://makeovermonday.co.uk/"
-        target="_blank"
-        rel="noopener noreferrer"
-        >community initiative</a
-      >
-      where participants redesign existing charts for better clarity. The
-      original, by
-      <a
-        href="https://ourworldindata.org/natural-disasters"
-        target="_blank"
-        rel="noopener noreferrer"
-        >Our World in Data</a
-      >, used a bar chart to track deaths from disasters over time (decadal
-      averages) and a separate tab with a map for geographic breakdowns. My
-      first impressions?
-    </p>
-    <ul>
-      <li>
-        The bar chart and map felt intuitive&mdash;familiar visualisations we
-        encounter often.
-      </li>
-      <li>
-        I could see deaths trending downward over time, but the stacked bars
-        made it hard to pick apart trends for specific disaster types, even with
-        the "by type" filter
-      </li>
-    </ul>
-    <p>Zooming out, I made a note of questions I was curious about:</p>
-    <ul>
-      <li>When and where were deaths highest&mdash;and why?</li>
-      <li>Which regions are hit hardest?</li>
-      <li>
-        Which natural disasters still claim lives today, and do their trends
-        vary?
-      </li>
-      <li>
-        How do these deaths compare to other causes? (I later dropped this
-        one&mdash;too many variables already, and didn't want to downplay the
-        gravity of natural disasters.)
-      </li>
-    </ul>
-    <h2>Exploring the Data</h2>
-    <p>
-      I brought the data into Tableau to explore it with some simple charts.
-      Almost immediately, I noticed it needed tidying: the dataset was wide, not
-      long (the best format for analysing in Tableau). A quick pivot in Tableau
-      Prep fixed that, setting me up for analysis. Early findings that stood
-      out:
-    </p>
-    <ul>
-      <li>
-        Deaths from extreme temperatures jumped sharply from the
-        1980s&mdash;expected but striking.
-      </li>
-      <li>
-        Drought emerged as the deadliest disaster. Where did it hit hardest?
-        India and China. I noted: Annotations or Dynamic Zone Visibility could
-        spotlight this later.
-      </li>
-    </ul>
-    <p>
-      What chart could bring these insights to life? A timeline with annotations
-      for key years felt like a start. Then I thought of the stream
-      graph&mdash;like the one in
-      <a
-        href="https://archive.nytimes.com/www.nytimes.com/interactive/2008/02/23/movies/20080223_REVENUE_GRAPHIC.html"
-        target="_blank"
-        rel="noopener noreferrer"
-        >The Ebb and Flow of Movies</a
-      >
-      from the NY Times. I created one using
-      <a
-        href="https://www.ladataviz.com/tools/advviz"
-        target="_blank"
-        rel="noopener noreferrer"
-        >LaDataViz&rsquo;s extension</a
-      >
-      . It captured the decline in a more compelling way than the bars, but I
-      wanted more: a yearly breakdown and a regional lens. I&rsquo;d also been
-      thinking about "data individualization" (inspired by
-      <a href="https://youtu.be/QWiy1hSEDls?si=SuNEEsAw1byXfa5Y"
-        >Nadieh Brehmer</a
-      >
-      and
-      <a
-        href="https://infogr8.com/soha-elghany-humanising-data-international-crises/"
-        >Soha Elghany</a
-      >&mdash;disaggregating data to tell individual stories. A filterable,
-      human-focused viz started to take shape in my mind.
-    </p>
-    <p>
-      <img
-        src="https://firebasestorage.googleapis.com/v0/b/firescript-577a2.appspot.com/o/imgs%2Fapp%2Ffaith%2FkQtPZSDwVV.png?alt=media&amp;token=ed47a890-03d2-4fc1-9675-1f29fbc7de69"
-        alt=""
-      />
-    </p>
-
-    <h2>Encoding and Design</h2>
-    <p>
-      As I turned to design, I stepped back to think about the bigger
-      picture&mdash;how to depict death in a visualisation. It&rsquo;s a
-      sensitive topic, and I wanted to be mindful that these aren&rsquo;t just
-      any numbers&mdash;they&rsquo;re lives lost. Almost immediately, I thought
-      flowers would be a fitting way to represent the data. I&rsquo;d been eager
-      to explore plant motifs in a visualisation for some time, and this felt
-      like the right opportunity. I loved the idea of using
-      flowers&mdash;especially ones connected to grieving&mdash;to shape the
-      entire viz. But which flower? I did some reading and found, across various
-      blogs, lilies and chrysanthemums stood out as the ones we often use when
-      comforting loved ones in grief. White lilies felt most universal, and I
-      thought would be easier to sketch than intricate layers of chrysanthemums.
-    </p>
-    <p>
-      I found a few images on Pinterest that I liked, brought them into
-      Excalidraw, and started thinking through how to encode the data. Each
-      petal could represent one natural disaster. This seemed promising until I
-      hit my first snag: I had 11 types of natural disasters, but lilies
-      typically have only six petals (or, as I discovered after a fun rabbit
-      hole, three petals and three sepals). That dive also revealed lilies have
-      six stamens, which I thought could help&mdash;perhaps petals for the top
-      five disasters, stamens for the rest. Then came the second snag: sizing
-      petals by death tolls would distort the flower&mdash;some petals shrinking
-      to near invisibility, stamens ballooning out of proportion. I eventually
-      settled on colour, rather than size, to reflect the death tolls. (Now,
-      writing this blog months later, I&rsquo;m finding that there are over
-      2,000 varieties of lilies, and some, like Double Oriental Lilies, are bred
-      to have more petals. Knowing this beforehand might have saved me tons of
-      work! Or maybe not&mdash;I was more drawn to the variety tied to
-      mourning.)
-    </p>
-    <p>
-      <img
-        title=""
-        src="https://firebasestorage.googleapis.com/v0/b/firescript-577a2.appspot.com/o/imgs%2Fapp%2Ffaith%2FJB3sLTd2xD.png?alt=media&amp;token=e9ddc92c-0bef-46ba-87e7-c128191aabf7"
-        alt=""
-      />
-    </p>
-    <p>
-      Next, I turned to Figma. Drawing flowers from scratch felt daunting, but I
-      remembered seeing on Twitter
-      <a
-        href="https://medium.com/@uduakafang/making-custom-shapes-in-figma-to-create-a-data-visualization-on-tableau-c174be97f996"
-        target="_blank"
-        rel="noopener noreferrer"
-        >Uduak Afang's blog on tracing shapes for her viz</a
-      >. This gave me a starting point. I swapped my initial lily image for one
-      with sharper outlines&mdash;easier to trace&mdash;and as I sketched, I
-      realized I could extract its vector for a far cleaner result than my
-      hand-drawn attempts. Then came another idea: what if each flower
-      represented one natural disaster, gathered into a bouquet? But how would
-      the bouquet look? How could I make each flower distinct so the encoded
-      data would stand out? Oh, aerial view. As I started arranging the flowers
-      from above, though, I hit another snag&mdash;11 flowers representing 11
-      natural disasters would overlap too much, muddling the clarity I wanted.
-    </p>
-    <p>
-      <img
-        title=""
-        src="https://firebasestorage.googleapis.com/v0/b/firescript-577a2.appspot.com/o/imgs%2Fapp%2Ffaith%2Fvb8-czbqZm.png?alt=media&amp;token=149892d3-a728-4e24-a102-b9570db49b5c"
-        alt=""
-      />
-    </p>
-    <p>
-      I tried a side view, but the problem persisted. Spacing the flowers apart
-      helped slightly, but the arrangement still felt off. Was my insistence on
-      a &ldquo;natural&rdquo; look holding me back?
-    </p>
-    <p>
-      <img
-        title=""
-        src="https://firebasestorage.googleapis.com/v0/b/firescript-577a2.appspot.com/o/imgs%2Fapp%2Ffaith%2FHy-WPkxQHe.png?alt=media&amp;token=fe16b293-9906-4459-b4d8-eeecbc973e78"
-        alt=""
-      />
-    </p>
-    <p>
-      I stepped back, thinking of
-      <a
-        href="https://www.behance.net/FedericaFragapane"
-        target="_blank"
-        rel="noopener noreferrer"
-        >Federica Fragapane</a
-      >, a designer I admire for her use of organic shapes in data
-      visualisation. Could I deconstruct the flowers into abstract forms? I
-      tried sketching petals from scratch in Figma, free to add as many as I
-      needed. But almost immediately, they lost their floral
-      essence&mdash;again. I still craved that flower motif. Switching to
-      chrysanthemums, with their abundant petals, crossed my mind; even broken
-      apart, they might hold their shape. But at this point I already had a much
-      stronger preference for using the lilies. Besides, creating something
-      lifelike from Figma&rsquo;s simple shapes&mdash;circles,
-      triangles&mdash;felt out of reach. Then it hit me: I could blend these
-      ideas&mdash;an aerial bouquet, with a vase as an abstract circle in the
-      centre.
-    </p>
-    <p>
-      <img
-        title=""
-        src="https://firebasestorage.googleapis.com/v0/b/firescript-577a2.appspot.com/o/imgs%2Fapp%2Ffaith%2FOFcOKyx3Wa.png?alt=media&amp;token=047b0933-2114-40b5-bb7a-8715e6cc1318"
-        alt=""
-      />
-    </p>
-    <h2>Building in Tableau</h2>
-    <p>
-      The next step was figuring out how to bring this to life in Tableau.
-      I&rsquo;d heard of polygons&mdash;something to do with custom
-      shapes&mdash;but I knew little beyond that. So I turned to the web for
-      inspiration.
-      <a
-        href="https://public.tableau.com/app/profile/serena.purslow/viz/ScallopShellPopulations/ScallopShellDashboard"
-        target="_blank"
-        rel="noopener noreferrer"
-        >Serena Purslow&rsquo;s Scallop Shell viz</a
-      >,
-      <a
-        href="https://public.tableau.com/app/profile/kevin.wee/viz/NutritionValuesofDimSum/Dashboard"
-        target="_blank"
-        rel="noopener noreferrer"
-        >Kevin Wee&rsquo;s Dim Sum Dishes viz</a
-      >, and
-      <a
-        href="https://public.tableau.com/app/profile/uduak.afang/viz/DeathscausedbyNaturalDisasters/DecadalView"
-        target="_blank"
-        rel="noopener noreferrer"
-        >Uduak Afang&rsquo;s Natural Disasters viz</a
-      >
-      offered hints, but what unblocked the rest of my process was
-      <a
-        href="https://public.tableau.com/app/profile/chimdi.nwosu/viz/OrganizationSunnyStreetVizForSocialGood/Dashboard3"
-        target="_blank"
-        rel="noopener noreferrer"
-        >Chimdi Nwosu&rsquo;s Sunny Street viz</a
-      >
-      with its accompanying detailed tutorial. I love blogs that unpack the
-      process; they open a whole world up for beginners, and is partly why
-      I&rsquo;m writing this one.
-    </p>
-    <p>
-      This section leans heavily on that tutorial, which you can find
-      <a
-        href="https://www.flerlagetwins.com/2022/01/guest-blog-post-map-layers-of-sunny.html"
-        target="_blank"
-        rel="noopener noreferrer"
-        >here</a
-      >. Tableau&rsquo;s map layers allow you to stack multiple
-      elements&mdash;points, shapes, polygons, density plots&mdash;in a single
-      view. Chimdi's viz makes clever use of this feature, and as he puts it,
-      "This can come in handy when there are similar objects which we might want
-      to work with as a group&mdash;it saves us from having to create a single
-      layer for each one."
-    </p>
-    <h3>1. Setting up the Data</h3>
-    <p>
-      My initial data exploration had already given me the structure I
-      needed&mdash;dimensions in a single column with corresponding values.
-    </p>
-
-    <h3>2. The Grid Layout</h3>
-    <p>
-      My data had 13 marks (representing decades) that I wanted to place on a
-      grid. I created two calculations:<br />Rows =<br />IF [Year] IN (1900,
-      1910, 1920, 1930, 1940) THEN -0.3<br />ELSEIF [Year] IN (1950, 1960, 1970,
-      1980) THEN 1<br />ELSE 2.3<br />END<br /><br />The
-      <strong>row value</strong> is based on the year. Years are grouped into
-      <strong>three categories</strong>, each assigned a
-      <strong>fixed numeric row position</strong>:
-    </p>
-    <ul>
-      <li><strong>Early years (1900&ndash;1940) &rarr; Row = -0.3</strong></li>
-      <li><strong>Mid-century (1950&ndash;1980) &rarr; Row = 1</strong></li>
-      <li>
-        <strong>Recent years (1990&ndash;present) &rarr; Row = 2.3</strong>
-      </li>
-    </ul>
-    <p>
-      These values create <strong>spaced-out horizontal bands</strong> in a
-      custom layout.
-    </p>
-    <p>
-      Columns =<br />IF [Year] IN (1900) THEN 0<br />ELSEIF [Year] IN (1950)
-      THEN 0.5<br />ELSEIF [Year] IN (1990, 1910) THEN 1<br />ELSEIF [Year] IN
-      (1960) THEN 1.5<br />ELSEIF [Year] IN (1920, 2000) THEN 2<br />ELSEIF
-      [Year] IN (1970) THEN 2.5<br />ELSEIF [Year] IN (1930, 2010) THEN 3<br />ELSEIF
-      [Year] IN (1980) THEN 3.5<br />ELSE 4<br />END<br /><br />The
-      <strong>column value</strong> is also based on the year, but instead of
-      broad groups, each year (or small clusters of years) is given a
-      <strong>specific column position</strong>. Given the odd total number of
-      years I was working with, I wanted to create a
-      <strong>staggered, semi-structured layout</strong>, ensuring years
-      don&rsquo;t stack directly above each other. The spacing (e.g., 0.5, 1.5,
-      2.5, etc.) prevents overlap and creates a
-      <strong>more even distribution</strong> across the x-axis.<br /><br />
-    </p>
-    <p>[INSERT IMAGE]</p>
-
-    <h3>3. Base Circles</h3>
-    <p>
-      I wanted circular shapes (i.e. flower vases) to encode the total number of
-      deaths for a given year. My calculation was:<br />Base Circles =<br />MAKEPOINT(-[4-Row],[5-Column])<br /><br />The
-      negative sign inverts the y-axis, placing earlier years at the top.
-    </p>
-    <p>[INSERT IMAGE]</p>
-
-    <h3>4. Flowers</h3>
-    <p>
-      For each circular shape, I needed another calculation to place flowers
-      around it.
-    </p>
-    <p>Flowers =</p>
-    <p>
-      IF [Natural Disaster] = "Drought" THEN MAKEPOINT(-[4-Row]+0.3,[5-Column])
-    </p>
-    <p>
-      ELSEIF [Natural Disaster] = "Earthquake" THEN
-      MAKEPOINT(-[4-Row]+0.252,[5-Column]+0.162)
-    </p>
-    <p>
-      ELSEIF [Natural Disaster] = "Dry mass movement" THEN
-      MAKEPOINT(-[4-Row]+0.125,[5-Column]+0.273)
-    </p>
-    <p>
-      ELSEIF [Natural Disaster] = "Extreme temperature" THEN
-      MAKEPOINT(-[4-Row]-0.042,[5-Column]+0.297)
-    </p>
-    <p>
-      ELSEIF [Natural Disaster] = "Extreme weather" THEN
-      MAKEPOINT(-[4-Row]-0.196,[5-Column]+0.227)
-    </p>
-    <p>
-      ELSEIF [Natural Disaster] = "Flood" THEN
-      MAKEPOINT(-[4-Row]-0.287,[5-Column]+0.085)
-    </p>
-    <p>
-      ELSEIF [Natural Disaster] = "Fog" THEN
-      MAKEPOINT(-[4-Row]-0.287,[5-Column]-0.084)
-    </p>
-    <p>
-      ELSEIF [Natural Disaster] = "Glacial lake outburst flood" THEN
-      MAKEPOINT(-[4-Row]-0.196,[5-Column]-0.226)
-    </p>
-    <p>
-      ELSEIF [Natural Disaster] = "Volcanic activity" THEN
-      MAKEPOINT(-[4-Row]-0.042,[5-Column]-0.296)
-    </p>
-    <p>
-      ELSEIF [Natural Disaster] = "Wet mass movement" THEN
-      MAKEPOINT(-[4-Row]+0.125,[5-Column]-0.272)
-    </p>
-    <p>ELSE MAKEPOINT(-[4-Row]+0.252,[5-Column]-0.162)</p>
-    <p>END</p>
-    <p>
-      To position disaster types evenly around a circle, I needed to remind
-      myself of some high school trigonometry (anyone remember SOH-CAH-TOA?) in
-      order to calculate the x and y offsets from a central point. The 'Flowers'
-      calculation <strong>adjusts the position</strong> of marks (representing
-      different natural disasters) <strong>around a circular layout</strong> for
-      each year by applying <strong>small offsets</strong> to the `[Row]` and
-      `[Column]` values. Essentially, it distributes the marks
-      <strong>evenly around a circle</strong> centered on the original grid
-      position. How it works in more detail:<br /><br />
-    </p>
-    <p><strong>1. Understanding the Trigonometry</strong></p>
-    <ul>
-      <li>
-        When placing points <strong>evenly around a circle</strong>, you can
-        think of each disaster type as a point on the circumference of a unit
-        circle (a circle with radius = 1). The key formula for calculating x and
-        y positions around a circle is:
-        <ul>
-          <li>x=r &times; cos⁡(&theta;)</li>
-          <li>y=r &times; sin⁡(&theta;)</li>
-        </ul>
-      </li>
-      <li>
-        Where:
-        <ul>
-          <li>
-            r = the radius of the circle (controls how far from the center the
-            points are).
-          </li>
-          <li>&theta; = the angle for each point.</li>
-          <li>x and y are the offsets from the center.</li>
-        </ul>
-      </li>
-    </ul>
-    <p><strong>2. How I Chose Angles &theta;</strong></p>
-    <ul>
-      <li>
-        Since I had <strong>11 disaster types</strong>, I needed to space them
-        <strong>evenly around the circle</strong>. A full circle is
-        <strong>360&deg;</strong>, so the angle for each disaster type was:
-        <ul>
-          <li>&theta;<sub>n</sub>= n/11 x&nbsp;360&deg;</li>
-          <li>where n is the disaster index (from 0 to 11).</li>
-        </ul>
-      </li>
-      <li>
-        For example, if I wanted <strong>Flood</strong> at position 6:
-        <ul>
-          <li>&theta;<sub>6</sub>= 6/11 x 360 =~ 196.4&deg;</li>
-        </ul>
-      </li>
-    </ul>
-    <p><strong>3. Calculating the Offsets</strong></p>
-    <ul>
-      <li>
-        Now, using my chosen <strong>radius</strong> (r=0.3), I computed:
-        <ul>
-          <li>X-offset=r &times; cos⁡(&theta;)</li>
-          <li>Y-offset=r &times; sin⁡(&theta;)</li>
-        </ul>
-      </li>
-      <li>
-        For example:
-        <ul>
-          <li>
-            For "Drought" at &theta; = 0&deg; &rarr; (cos(0), sin(0)) &rarr; (1,
-            0):
-            <ul>
-              <li>X = 0.3 &times; 1 = 0.3</li>
-              <li>Y = 0.3 &times; 0 = 0</li>
-            </ul>
-          </li>
-          <li>
-            For "Earthquake" at &theta; &asymp; 32.7&deg;&nbsp;&rarr; (0.3
-            &times; cos(32.7&deg;), 0.3 &times; sin(32.7&deg;)):
-            <ul>
-              <li>X = 0.3 &times; 0.866 &asymp; 0.252</li>
-              <li>Y = 0.3 &times; 0.5 &asymp; 0.162</li>
-            </ul>
-          </li>
-          <li>And so on, for all other disaster types.</li>
-        </ul>
-      </li>
-    </ul>
-    <p><strong>4. Why This Works</strong></p>
-    <ul>
-      <li>
-        <strong>Even spacing</strong>: Since each disaster has an equal step in
-        <strong>angle</strong>, they distribute
-        <strong>uniformly around the circle</strong>.
-      </li>
-      <li>
-        <strong>Controlled spread</strong>: By picking a fixed
-        <strong>radius</strong> (r=0.3), the points don&rsquo;t spread too far
-        apart.
-      </li>
-      <li>
-        <strong>Manual fine-tuning</strong>: I was able to tweak the offsets a
-        bit (easier to fine-tune rather than tweaking angles used for a SIN/COS
-        calculation right in Tableau) to make the visualization clearer.
-      </li>
-    </ul>
-    <h3>5. Putting it all Together</h3>
-    <p>To bring it all together into the view, I:</p>
-    <ul>
-      <li>Brought &lsquo;Base Circles&rsquo; calculation to Detail</li>
-      <li>Changed mark type to Shape</li>
-      <li>Removed map background layers</li>
-      <li>
-        Placed &lsquo;Year&rsquo; on Detail, and &lsquo;Number of Deaths&rsquo;
-        on Size
-      </li>
-      <li>Brought&nbsp;&lsquo;Flowers&rsquo; calculation as a map layer</li>
-      <li>Placed &lsquo;Year' on Detail</li>
-      <li>
-        Changed mark type to Shape &ndash; assign custom shapes (the lilies!) to
-        each 'Natural Disaster'
-      </li>
-      <li>Brought 'Number of Deaths&rsquo; on Size</li>
-      <li>Fine-tuned sizes and colours for clarity</li>
-    </ul>
-    <h2>An Intermediate Deliverable</h2>
-    <p>
-      I&rsquo;m content with where I landed&mdash;not flawless, but a solid
-      [[intermediate deliverable]]. Did I answer my starting questions? Not
-      fully, but I thoroughly enjoyed the journey through visual encoding. If I
-      revisited this project, I'd push further toward
-      individualization&mdash;perhaps a single flower for every life lost. But
-      for now, I'm satisfied with this iteration.
-    </p>
-    <p>
-      <strong
-        >Explore the full viz on Tableau Public
+      <p>
+        I created this visualization,
         <a
           href="https://public.tableau.com/app/profile/faith5698/viz/DeathfromNaturalDisastersMakeoverMonday/LightMode"
           target="_blank"
           rel="noopener noreferrer"
+          >"Death from Natural Disasters</a
+        >, for a Makeover Monday challenge, a
+        <a
+          href="https://makeovermonday.co.uk/"
+          target="_blank"
+          rel="noopener noreferrer"
+          >community initiative</a
+        >
+        where participants redesign existing charts for better clarity. The
+        original, by
+        <a
+          href="https://ourworldindata.org/natural-disasters"
+          target="_blank"
+          rel="noopener noreferrer"
+          >Our World in Data</a
+        >, used a bar chart to track deaths from disasters over time (decadal
+        averages) and a separate tab with a map for geographic breakdowns. My
+        first impressions?
+      </p>
+      <ul>
+        <li>
+          The bar chart and map felt intuitive&mdash;familiar visualisations we
+          encounter often.
+        </li>
+        <li>
+          I could see deaths trending downward over time, but the stacked bars
+          made it hard to pick apart trends for specific disaster types, even
+          with the "by type" filter
+        </li>
+      </ul>
+      <p>Zooming out, I made a note of questions I was curious about:</p>
+      <ul>
+        <li>When and where were deaths highest&mdash;and why?</li>
+        <li>Which regions are hit hardest?</li>
+        <li>
+          Which natural disasters still claim lives today, and do their trends
+          vary?
+        </li>
+        <li>
+          How do these deaths compare to other causes? (I later dropped this
+          one&mdash;too many variables already, and didn't want to downplay the
+          gravity of natural disasters.)
+        </li>
+      </ul>
+      <h2>Exploring the Data</h2>
+      <p>
+        I brought the data into Tableau to explore it with some simple charts.
+        Almost immediately, I noticed it needed tidying: the dataset was wide,
+        not long (the best format for analysing in Tableau). A quick pivot in
+        Tableau Prep fixed that, setting me up for analysis. Early findings that
+        stood out:
+      </p>
+      <ul>
+        <li>
+          Deaths from extreme temperatures jumped sharply from the
+          1980s&mdash;expected but striking.
+        </li>
+        <li>
+          Drought emerged as the deadliest disaster. Where did it hit hardest?
+          India and China. I noted: Annotations or Dynamic Zone Visibility could
+          spotlight this later.
+        </li>
+      </ul>
+      <p>
+        What chart could bring these insights to life? A timeline with
+        annotations for key years felt like a start. Then I thought of the
+        stream graph&mdash;like the one in
+        <a
+          href="https://archive.nytimes.com/www.nytimes.com/interactive/2008/02/23/movies/20080223_REVENUE_GRAPHIC.html"
+          target="_blank"
+          rel="noopener noreferrer"
+          >The Ebb and Flow of Movies</a
+        >
+        from the NY Times. I created one using
+        <a
+          href="https://www.ladataviz.com/tools/advviz"
+          target="_blank"
+          rel="noopener noreferrer"
+          >LaDataViz&rsquo;s extension</a
+        >
+        . It captured the decline in a more compelling way than the bars, but I
+        wanted more: a yearly breakdown and a regional lens. I&rsquo;d also been
+        thinking about "data individualization" (inspired by
+        <a href="https://youtu.be/QWiy1hSEDls?si=SuNEEsAw1byXfa5Y"
+          >Nadieh Brehmer</a
+        >
+        and
+        <a
+          href="https://infogr8.com/soha-elghany-humanising-data-international-crises/"
+          >Soha Elghany</a
+        >&mdash;disaggregating data to tell individual stories. A filterable,
+        human-focused viz started to take shape in my mind.
+      </p>
+      <p>
+        <img
+          src="https://firebasestorage.googleapis.com/v0/b/firescript-577a2.appspot.com/o/imgs%2Fapp%2Ffaith%2FkQtPZSDwVV.png?alt=media&amp;token=ed47a890-03d2-4fc1-9675-1f29fbc7de69"
+          alt=""
+        />
+      </p>
+
+      <h2>Encoding and Design</h2>
+      <p>
+        As I turned to design, I stepped back to think about the bigger
+        picture&mdash;how to depict death in a visualisation. It&rsquo;s a
+        sensitive topic, and I wanted to be mindful that these aren&rsquo;t just
+        any numbers&mdash;they&rsquo;re lives lost. Almost immediately, I
+        thought flowers would be a fitting way to represent the data. I&rsquo;d
+        been eager to explore plant motifs in a visualisation for some time, and
+        this felt like the right opportunity. I loved the idea of using
+        flowers&mdash;especially ones connected to grieving&mdash;to shape the
+        entire viz. But which flower? I did some reading and found, across
+        various blogs, lilies and chrysanthemums stood out as the ones we often
+        use when comforting loved ones in grief. White lilies felt most
+        universal, and I thought would be easier to sketch than intricate layers
+        of chrysanthemums.
+      </p>
+      <p>
+        I found a few images on Pinterest that I liked, brought them into
+        Excalidraw, and started thinking through how to encode the data. Each
+        petal could represent one natural disaster. This seemed promising until
+        I hit my first snag: I had 11 types of natural disasters, but lilies
+        typically have only six petals (or, as I discovered after a fun rabbit
+        hole, three petals and three sepals). That dive also revealed lilies
+        have six stamens, which I thought could help&mdash;perhaps petals for
+        the top five disasters, stamens for the rest. Then came the second snag:
+        sizing petals by death tolls would distort the flower&mdash;some petals
+        shrinking to near invisibility, stamens ballooning out of proportion. I
+        eventually settled on colour, rather than size, to reflect the death
+        tolls. (Now, writing this blog months later, I&rsquo;m finding that
+        there are over 2,000 varieties of lilies, and some, like Double Oriental
+        Lilies, are bred to have more petals. Knowing this beforehand might have
+        saved me tons of work! Or maybe not&mdash;I was more drawn to the
+        variety tied to mourning.)
+      </p>
+      <p>
+        <img
+          title=""
+          src="https://firebasestorage.googleapis.com/v0/b/firescript-577a2.appspot.com/o/imgs%2Fapp%2Ffaith%2FJB3sLTd2xD.png?alt=media&amp;token=e9ddc92c-0bef-46ba-87e7-c128191aabf7"
+          alt=""
+        />
+      </p>
+      <p>
+        Next, I turned to Figma. Drawing flowers from scratch felt daunting, but
+        I remembered seeing on Twitter
+        <a
+          href="https://medium.com/@uduakafang/making-custom-shapes-in-figma-to-create-a-data-visualization-on-tableau-c174be97f996"
+          target="_blank"
+          rel="noopener noreferrer"
+          >Uduak Afang's blog on tracing shapes for her viz</a
+        >. This gave me a starting point. I swapped my initial lily image for
+        one with sharper outlines&mdash;easier to trace&mdash;and as I sketched,
+        I realized I could extract its vector for a far cleaner result than my
+        hand-drawn attempts. Then came another idea: what if each flower
+        represented one natural disaster, gathered into a bouquet? But how would
+        the bouquet look? How could I make each flower distinct so the encoded
+        data would stand out? Oh, aerial view. As I started arranging the
+        flowers from above, though, I hit another snag&mdash;11 flowers
+        representing 11 natural disasters would overlap too much, muddling the
+        clarity I wanted.
+      </p>
+      <p>
+        <img
+          title=""
+          src="https://firebasestorage.googleapis.com/v0/b/firescript-577a2.appspot.com/o/imgs%2Fapp%2Ffaith%2Fvb8-czbqZm.png?alt=media&amp;token=149892d3-a728-4e24-a102-b9570db49b5c"
+          alt=""
+        />
+      </p>
+      <p>
+        I tried a side view, but the problem persisted. Spacing the flowers
+        apart helped slightly, but the arrangement still felt off. Was my
+        insistence on a &ldquo;natural&rdquo; look holding me back?
+      </p>
+      <p>
+        <img
+          title=""
+          src="https://firebasestorage.googleapis.com/v0/b/firescript-577a2.appspot.com/o/imgs%2Fapp%2Ffaith%2FHy-WPkxQHe.png?alt=media&amp;token=fe16b293-9906-4459-b4d8-eeecbc973e78"
+          alt=""
+        />
+      </p>
+      <p>
+        I stepped back, thinking of
+        <a
+          href="https://www.behance.net/FedericaFragapane"
+          target="_blank"
+          rel="noopener noreferrer"
+          >Federica Fragapane</a
+        >, a designer I admire for her use of organic shapes in data
+        visualisation. Could I deconstruct the flowers into abstract forms? I
+        tried sketching petals from scratch in Figma, free to add as many as I
+        needed. But almost immediately, they lost their floral
+        essence&mdash;again. I still craved that flower motif. Switching to
+        chrysanthemums, with their abundant petals, crossed my mind; even broken
+        apart, they might hold their shape. But at this point I already had a
+        much stronger preference for using the lilies. Besides, creating
+        something lifelike from Figma&rsquo;s simple shapes&mdash;circles,
+        triangles&mdash;felt out of reach. Then it hit me: I could blend these
+        ideas&mdash;an aerial bouquet, with a vase as an abstract circle in the
+        centre.
+      </p>
+      <p>
+        <img
+          title=""
+          src="https://firebasestorage.googleapis.com/v0/b/firescript-577a2.appspot.com/o/imgs%2Fapp%2Ffaith%2FOFcOKyx3Wa.png?alt=media&amp;token=047b0933-2114-40b5-bb7a-8715e6cc1318"
+          alt=""
+        />
+      </p>
+      <h2>Building in Tableau</h2>
+      <p>
+        The next step was figuring out how to bring this to life in Tableau.
+        I&rsquo;d heard of polygons&mdash;something to do with custom
+        shapes&mdash;but I knew little beyond that. So I turned to the web for
+        inspiration.
+        <a
+          href="https://public.tableau.com/app/profile/serena.purslow/viz/ScallopShellPopulations/ScallopShellDashboard"
+          target="_blank"
+          rel="noopener noreferrer"
+          >Serena Purslow&rsquo;s Scallop Shell viz</a
+        >,
+        <a
+          href="https://public.tableau.com/app/profile/kevin.wee/viz/NutritionValuesofDimSum/Dashboard"
+          target="_blank"
+          rel="noopener noreferrer"
+          >Kevin Wee&rsquo;s Dim Sum Dishes viz</a
+        >, and
+        <a
+          href="https://public.tableau.com/app/profile/uduak.afang/viz/DeathscausedbyNaturalDisasters/DecadalView"
+          target="_blank"
+          rel="noopener noreferrer"
+          >Uduak Afang&rsquo;s Natural Disasters viz</a
+        >
+        offered hints, but what unblocked the rest of my process was
+        <a
+          href="https://public.tableau.com/app/profile/chimdi.nwosu/viz/OrganizationSunnyStreetVizForSocialGood/Dashboard3"
+          target="_blank"
+          rel="noopener noreferrer"
+          >Chimdi Nwosu&rsquo;s Sunny Street viz</a
+        >
+        with its accompanying detailed tutorial. I love blogs that unpack the
+        process; they open a whole world up for beginners, and is partly why
+        I&rsquo;m writing this one.
+      </p>
+      <p>
+        This section leans heavily on that tutorial, which you can find
+        <a
+          href="https://www.flerlagetwins.com/2022/01/guest-blog-post-map-layers-of-sunny.html"
+          target="_blank"
+          rel="noopener noreferrer"
           >here</a
-        >.</strong
-      >
-    </p>
+        >. Tableau&rsquo;s map layers allow you to stack multiple
+        elements&mdash;points, shapes, polygons, density plots&mdash;in a single
+        view. Chimdi's viz makes clever use of this feature, and as he puts it,
+        "This can come in handy when there are similar objects which we might
+        want to work with as a group&mdash;it saves us from having to create a
+        single layer for each one."
+      </p>
+      <h3>1. Setting up the Data</h3>
+      <p>
+        My initial data exploration had already given me the structure I
+        needed&mdash;dimensions in a single column with corresponding values.
+      </p>
+
+      <h3>2. The Grid Layout</h3>
+      <p>
+        My data had 13 marks (representing decades) that I wanted to place on a
+        grid. I created two calculations:<br />Rows =<br />IF [Year] IN (1900,
+        1910, 1920, 1930, 1940) THEN -0.3<br />ELSEIF [Year] IN (1950, 1960,
+        1970, 1980) THEN 1<br />ELSE 2.3<br />END<br /><br />The
+        <strong>row value</strong> is based on the year. Years are grouped into
+        <strong>three categories</strong>, each assigned a
+        <strong>fixed numeric row position</strong>:
+      </p>
+      <ul>
+        <li>
+          <strong>Early years (1900&ndash;1940) &rarr; Row = -0.3</strong>
+        </li>
+        <li><strong>Mid-century (1950&ndash;1980) &rarr; Row = 1</strong></li>
+        <li>
+          <strong>Recent years (1990&ndash;present) &rarr; Row = 2.3</strong>
+        </li>
+      </ul>
+      <p>
+        These values create <strong>spaced-out horizontal bands</strong> in a
+        custom layout.
+      </p>
+      <p>
+        Columns =<br />IF [Year] IN (1900) THEN 0<br />ELSEIF [Year] IN (1950)
+        THEN 0.5<br />ELSEIF [Year] IN (1990, 1910) THEN 1<br />ELSEIF [Year] IN
+        (1960) THEN 1.5<br />ELSEIF [Year] IN (1920, 2000) THEN 2<br />ELSEIF
+        [Year] IN (1970) THEN 2.5<br />ELSEIF [Year] IN (1930, 2010) THEN 3<br />ELSEIF
+        [Year] IN (1980) THEN 3.5<br />ELSE 4<br />END<br /><br />The
+        <strong>column value</strong> is also based on the year, but instead of
+        broad groups, each year (or small clusters of years) is given a
+        <strong>specific column position</strong>. Given the odd total number of
+        years I was working with, I wanted to create a
+        <strong>staggered, semi-structured layout</strong>, ensuring years
+        don&rsquo;t stack directly above each other. The spacing (e.g., 0.5,
+        1.5, 2.5, etc.) prevents overlap and creates a
+        <strong>more even distribution</strong> across the x-axis.<br /><br />
+      </p>
+      <p>[INSERT IMAGE]</p>
+
+      <h3>3. Base Circles</h3>
+      <p>
+        I wanted circular shapes (i.e. flower vases) to encode the total number
+        of deaths for a given year. My calculation was:<br />Base Circles =<br />MAKEPOINT(-[4-Row],[5-Column])<br /><br />The
+        negative sign inverts the y-axis, placing earlier years at the top.
+      </p>
+      <p>[INSERT IMAGE]</p>
+
+      <h3>4. Flowers</h3>
+      <p>
+        For each circular shape, I needed another calculation to place flowers
+        around it.
+      </p>
+      <p>Flowers =</p>
+      <p>
+        IF [Natural Disaster] = "Drought" THEN
+        MAKEPOINT(-[4-Row]+0.3,[5-Column])
+      </p>
+      <p>
+        ELSEIF [Natural Disaster] = "Earthquake" THEN
+        MAKEPOINT(-[4-Row]+0.252,[5-Column]+0.162)
+      </p>
+      <p>
+        ELSEIF [Natural Disaster] = "Dry mass movement" THEN
+        MAKEPOINT(-[4-Row]+0.125,[5-Column]+0.273)
+      </p>
+      <p>
+        ELSEIF [Natural Disaster] = "Extreme temperature" THEN
+        MAKEPOINT(-[4-Row]-0.042,[5-Column]+0.297)
+      </p>
+      <p>
+        ELSEIF [Natural Disaster] = "Extreme weather" THEN
+        MAKEPOINT(-[4-Row]-0.196,[5-Column]+0.227)
+      </p>
+      <p>
+        ELSEIF [Natural Disaster] = "Flood" THEN
+        MAKEPOINT(-[4-Row]-0.287,[5-Column]+0.085)
+      </p>
+      <p>
+        ELSEIF [Natural Disaster] = "Fog" THEN
+        MAKEPOINT(-[4-Row]-0.287,[5-Column]-0.084)
+      </p>
+      <p>
+        ELSEIF [Natural Disaster] = "Glacial lake outburst flood" THEN
+        MAKEPOINT(-[4-Row]-0.196,[5-Column]-0.226)
+      </p>
+      <p>
+        ELSEIF [Natural Disaster] = "Volcanic activity" THEN
+        MAKEPOINT(-[4-Row]-0.042,[5-Column]-0.296)
+      </p>
+      <p>
+        ELSEIF [Natural Disaster] = "Wet mass movement" THEN
+        MAKEPOINT(-[4-Row]+0.125,[5-Column]-0.272)
+      </p>
+      <p>ELSE MAKEPOINT(-[4-Row]+0.252,[5-Column]-0.162)</p>
+      <p>END</p>
+      <p>
+        To position disaster types evenly around a circle, I needed to remind
+        myself of some high school trigonometry (anyone remember SOH-CAH-TOA?)
+        in order to calculate the x and y offsets from a central point. The
+        'Flowers' calculation <strong>adjusts the position</strong> of marks
+        (representing different natural disasters)
+        <strong>around a circular layout</strong> for each year by applying
+        <strong>small offsets</strong> to the `[Row]` and `[Column]` values.
+        Essentially, it distributes the marks
+        <strong>evenly around a circle</strong> centered on the original grid
+        position. How it works in more detail:<br /><br />
+      </p>
+      <p><strong>1. Understanding the Trigonometry</strong></p>
+      <ul>
+        <li>
+          When placing points <strong>evenly around a circle</strong>, you can
+          think of each disaster type as a point on the circumference of a unit
+          circle (a circle with radius = 1). The key formula for calculating x
+          and y positions around a circle is:
+          <ul>
+            <li>x=r &times; cos⁡(&theta;)</li>
+            <li>y=r &times; sin⁡(&theta;)</li>
+          </ul>
+        </li>
+        <li>
+          Where:
+          <ul>
+            <li>
+              r = the radius of the circle (controls how far from the center the
+              points are).
+            </li>
+            <li>&theta; = the angle for each point.</li>
+            <li>x and y are the offsets from the center.</li>
+          </ul>
+        </li>
+      </ul>
+      <p><strong>2. How I Chose Angles &theta;</strong></p>
+      <ul>
+        <li>
+          Since I had <strong>11 disaster types</strong>, I needed to space them
+          <strong>evenly around the circle</strong>. A full circle is
+          <strong>360&deg;</strong>, so the angle for each disaster type was:
+          <ul>
+            <li>&theta;<sub>n</sub>= n/11 x&nbsp;360&deg;</li>
+            <li>where n is the disaster index (from 0 to 11).</li>
+          </ul>
+        </li>
+        <li>
+          For example, if I wanted <strong>Flood</strong> at position 6:
+          <ul>
+            <li>&theta;<sub>6</sub>= 6/11 x 360 =~ 196.4&deg;</li>
+          </ul>
+        </li>
+      </ul>
+      <p><strong>3. Calculating the Offsets</strong></p>
+      <ul>
+        <li>
+          Now, using my chosen <strong>radius</strong> (r=0.3), I computed:
+          <ul>
+            <li>X-offset=r &times; cos⁡(&theta;)</li>
+            <li>Y-offset=r &times; sin⁡(&theta;)</li>
+          </ul>
+        </li>
+        <li>
+          For example:
+          <ul>
+            <li>
+              For "Drought" at &theta; = 0&deg; &rarr; (cos(0), sin(0)) &rarr;
+              (1, 0):
+              <ul>
+                <li>X = 0.3 &times; 1 = 0.3</li>
+                <li>Y = 0.3 &times; 0 = 0</li>
+              </ul>
+            </li>
+            <li>
+              For "Earthquake" at &theta; &asymp; 32.7&deg;&nbsp;&rarr; (0.3
+              &times; cos(32.7&deg;), 0.3 &times; sin(32.7&deg;)):
+              <ul>
+                <li>X = 0.3 &times; 0.866 &asymp; 0.252</li>
+                <li>Y = 0.3 &times; 0.5 &asymp; 0.162</li>
+              </ul>
+            </li>
+            <li>And so on, for all other disaster types.</li>
+          </ul>
+        </li>
+      </ul>
+      <p><strong>4. Why This Works</strong></p>
+      <ul>
+        <li>
+          <strong>Even spacing</strong>: Since each disaster has an equal step
+          in <strong>angle</strong>, they distribute
+          <strong>uniformly around the circle</strong>.
+        </li>
+        <li>
+          <strong>Controlled spread</strong>: By picking a fixed
+          <strong>radius</strong> (r=0.3), the points don&rsquo;t spread too far
+          apart.
+        </li>
+        <li>
+          <strong>Manual fine-tuning</strong>: I was able to tweak the offsets a
+          bit (easier to fine-tune rather than tweaking angles used for a
+          SIN/COS calculation right in Tableau) to make the visualization
+          clearer.
+        </li>
+      </ul>
+      <h3>5. Putting it all Together</h3>
+      <p>To bring it all together into the view, I:</p>
+      <ul>
+        <li>Brought &lsquo;Base Circles&rsquo; calculation to Detail</li>
+        <li>Changed mark type to Shape</li>
+        <li>Removed map background layers</li>
+        <li>
+          Placed &lsquo;Year&rsquo; on Detail, and &lsquo;Number of
+          Deaths&rsquo; on Size
+        </li>
+        <li>Brought&nbsp;&lsquo;Flowers&rsquo; calculation as a map layer</li>
+        <li>Placed &lsquo;Year' on Detail</li>
+        <li>
+          Changed mark type to Shape &ndash; assign custom shapes (the lilies!)
+          to each 'Natural Disaster'
+        </li>
+        <li>Brought 'Number of Deaths&rsquo; on Size</li>
+        <li>Fine-tuned sizes and colours for clarity</li>
+      </ul>
+      <h2>An Intermediate Deliverable</h2>
+      <p>
+        I&rsquo;m content with where I landed&mdash;not flawless, but a solid
+        [[intermediate deliverable]]. Did I answer my starting questions? Not
+        fully, but I thoroughly enjoyed the journey through visual encoding. If
+        I revisited this project, I'd push further toward
+        individualization&mdash;perhaps a single flower for every life lost. But
+        for now, I'm satisfied with this iteration.
+      </p>
+      <p>
+        <strong
+          >Explore the full viz on Tableau Public
+          <a
+            href="https://public.tableau.com/app/profile/faith5698/viz/DeathfromNaturalDisastersMakeoverMonday/LightMode"
+            target="_blank"
+            rel="noopener noreferrer"
+            >here</a
+          >.</strong
+        >
+      </p>
+    </div>
   </body>
 </html>

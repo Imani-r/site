@@ -1,10 +1,19 @@
-@import url('https://fonts.googleapis.com/css2?family=Karla:ital,wght@0,200..800;1,200..800&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Karla:ital,wght@0,200..800;1,200..800&display=swap");
 
 :root {
-  --global-font:  'Karla', sans-serif;
+  --global-font: "Karla", sans-serif;
 }
+
+/* Responsive Container */
+.responsive-container {
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 /* FONTS */
-p, ul li {
+p,
+ul li {
   font-family: var(--global-font);
   color: #144e56;
   margin-bottom: 1rem;
@@ -16,6 +25,7 @@ p, ul li {
   display: flex;
   justify-content: space-around;
   align-items: center;
+  width: 100%; /* Full width navigation */
 }
 
 .topnav a {
@@ -25,19 +35,22 @@ p, ul li {
 /* Change the color of links on hover */
 .topnav a:hover {
   color: orange;
-
-/* #home {
-  font-size: large;
-} */
 }
 
-h1, h2, h3 {
+h1 {
   font-family: var(--global-font);
   color: #144e56;
   margin-bottom: 1rem;
   text-align: center;
 }
 
+h2,
+h3 {
+  font-family: var(--global-font);
+  color: #144e56;
+  margin-bottom: 1rem;
+  text-align: start;
+}
 
 #profile_photo {
   width: 200px;
