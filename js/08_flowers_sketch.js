@@ -5,7 +5,9 @@ let imageCount;
 
 let garden;
 let drawsPerFrame;
-let densityFactor = 0.2; // Increase for faster fill
+let densityFactor = 0.9; // Increase for faster fill
+
+let flowerCount = 0;
 
 function preload() {
   wildFlowers1 = loadImage("assets/wildflowers_pinterest_drawing.jpg");
@@ -27,19 +29,39 @@ function setup() {
   drawsPerFrame = int(width * height * densityFactor);
 
   background(255);
-  frameRate(120);
+  frameRate(30);
 }
 
-function draw() {
-  image(garden, 0, 0);
+  // Clustered bloom - multiple clusters per frame
+  function draw() {
+    image(garden, 0, 0);
   
-  // Clustered bloom
-  let j = floor(random(imageCount));
-  let clusterSize = floor(random(3, 27));
-  for (let k = 0; k < clusterSize; k++) {
-    paintFlowers(wildFlowers1, j * imgWidth);
+    // Draw every frame (no skip)
+    let clusterCount = 100; // Spread across tiles
+    let clusterSize = 20;   // Burst per cluster
+  
+    for (let i = 0; i < clusterCount; i++) {
+      let j = floor(random(imageCount));
+      for (let k = 0; k < clusterSize; k++) {
+        paintFlowers(wildFlowers1, j * imgWidth);
+      }
+    }
+
+    // log current flower count to the console
+    console.log(flowerCount);
   }
-}
+  
+
+  // Clustered bloom - One cluster per frame
+// function draw() {
+//   image(garden, 0, 0);
+  
+//   let j = floor(random(imageCount));
+//   let clusterSize = floor(random(3, 27));
+//   for (let k = 0; k < clusterSize; k++) {
+//     paintFlowers(wildFlowers1, j * imgWidth);
+//   }
+// }
 
 // One dot per frame
 // let j = floor(random(imageCount));
@@ -67,4 +89,7 @@ function paintFlowers(img, offsetX) {
   garden.stroke(c);
   garden.strokeWeight(random(1, 10));
   garden.point(drawX, drawY);
+
+  // Count number of flower points
+  flowerCount++;
 }
