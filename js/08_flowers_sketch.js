@@ -35,8 +35,8 @@ function setup() {
     image(garden, 0, 0);
   
     // Draw every frame (no skip)
-    let clusterCount = 30; // Spread across tiles
-    let clusterSize = 10;   // Burst per cluster
+    let clusterCount = 100; // Spread across tiles
+    let clusterSize = 20;   // Burst per cluster
   
     for (let i = 0; i < clusterCount; i++) {
       let j = floor(random(imageCount));
