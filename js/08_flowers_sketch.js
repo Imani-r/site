@@ -5,7 +5,7 @@ let imageCount;
 
 let garden;
 let drawsPerFrame;
-let densityFactor = 0.9; // Increase for faster fill
+let densityFactor = 0.2; // Increase for faster fill
 
 let flowerCount = 0;
 
@@ -37,7 +37,7 @@ function setup() {
     image(garden, 0, 0);
   
     // Draw every frame (no skip)
-    let clusterCount = 100; // Spread across tiles
+    let clusterCount = 60; // Spread across tiles
     let clusterSize = 20;   // Burst per cluster
   
     for (let i = 0; i < clusterCount; i++) {
