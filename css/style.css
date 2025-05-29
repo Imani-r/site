@@ -21,20 +21,71 @@ ul li {
 
 /* Top Nagigation Styling */
 .topnav {
-  background-color: aquamarine;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 3;
   display: flex;
   justify-content: space-around;
   align-items: center;
-  width: 100%; /* Full width navigation */
+  background: rgba(255, 255, 255, 0.85);
+  padding: 1rem 0;
+  backdrop-filter: blur(4px);
 }
 
 .topnav a {
   text-decoration: none;
+  color: #144e56;
+  font-family: var(--global-font);
+  font-weight: 500;
 }
 
 /* Change the color of links on hover */
 .topnav a:hover {
-  color: orange;
+  color: #488D96;
+}
+
+/* Styling for home page */
+#sketch-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+
+canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 0;
+}
+
+.homingquotes {
+  position: absolute;
+  top: 25%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+  text-align: center;
+  color: #563e14;
+  font-family: var(--global-font);
+  font-size: 1.2rem;
+  padding: 1rem;
+  pointer-events: none; /* optional: makes the text non-interactive */
+}
+
+
+.homingquotes h2 {
+  font-family: var(--global-font);
+  color: #563e14;
+  margin-top: 10rem;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.content-wrapper {
+  padding-top: 7rem;
 }
 
 h1 {
