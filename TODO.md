@@ -1,0 +1,4 @@
+- [ ] Basic CLJ project with REPL, including hiccup and some md->hiccup thing
+- [ ] User namespace: 'wrap-page', 'inject-nav' etc. functions
+- [ ] 'build' fn callable from REPL that produces output HTML
+- [ ] STRETCH: poor man's 'hot reloading' with file watcher 
