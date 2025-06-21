@@ -1,0 +1,41 @@
+# My Last 10 Years in Books
+
+For a while now, I've wanted to play around with visualizing data on the books I've read over the last few years, particularly to discover what genres or themes I lean more toward, and to see how my reading habits have changed over time. Recently, two things happened that made me decide to act on this curiosity.
+
+- First, a friend asked me what my all-time-favourite book is. My answer was, to her disappointment, "it depends." Because it does! What makes a book impactful or transformative depends on when you read it, and what's going on in your life at that time. **[1]** This got me thinking about my reading journey over the past few years.
+- Second, I discovered a new alternative to Goodreads called [The StoryGraph](https://www.thestorygraph.com/), which offers more sophisticated and insightful reading stats. I wanted to transfer my reading records from Goodreads to StoryGraph and in the process, realized that I could export the data I needed to play around with visualizing my reading data myself.
+
+The process of collecting and organizing the data was more onerous than I anticipated. Initially, I imported my data from from Goodreads to StoryGraph, but the import was rather messy. I had to go through each record on StoryGraph to ensure its accuracy and then export the updated data for my visualization purposes. Unfortunately, StoryGraph's supplementary categories which I was especially excited about (book genre, mood, pace, etc.) are proprietary and were therefore excluded from the export. **[2]** I figured I could then just use whatever categories StoryGraph allowed me to export, but I soon realized that my struggles with data were far from over. I kept finding new problems and discrepancies that I hadn't seen coming. Every time I fixed one, another popped up, and it became a seemingly never-ending cycle that spanned over 4 days:
+
+- When I started cleaning the data export from StoryGraph, I noticed that for some books, I was missing data on the format (digital or print). I learned that this was because different editions had different formats, so I went through each record on StoryGraph, checking to ensure I captured the correct edition.
+- When I exported the data again, I noticed that some essential categories, such as year of publication and number of pages, were missing. I learned that some editions didn't include this data because StoryGraph relies on user-generated data for book editions, which is sometimes incomplete. I went through the incomplete records and where possible, added missing data to the StoryGraph database. And although my records were now up to date, I still couldn't export data for these crucial categories.
+- When I exported the data again, I noticed that ... you get the idea. After several such cycles, I decided to switch to using Goodreads data.
+- Since my StoryGraph records were now more accurate than the ones on Goodreads, I thought the most efficient way of updating my Goodreads records was to import the StoryGraph data directly into Goodreads. That done, I now faced the problem of double entries, so I had to go through all the the records and delete redundant ones while adding any other missing data.
+- When I exported the Goodreads data (last one, I promise), I noticed a few more missing data points, for example some editions did not include data on number of pages, or original year of publication. At this point, I decided to simply update the exported csv file manually.
+
+After struggling through the tedious process of organizing and cleaning the data, and feeling like I had achieved a decent level of accuracy (not perfect, but good enough), I finally got to the fun part: visualizing the data. I began with browsing the net for some inspiration, and am particularly grateful to:
+
+- [An Ocean of Books](https://artsexperiments.withgoogle.com/ocean-of-books?latitude=-43.3700&longitude=-2.1928&zoom=4.23) — a beautiful mapping of books that I so thoroughly enjoyed exploring, and was reminded of what a vast world of books we're lucky to have. I especially loved the colour palette and decided to adapt it for my own visualizations.
+- [Books I've read in the Past 10 Years](https://public.tableau.com/app/profile/judit.bekker/viz/books_brown/Books) — a Tableau dashboard by Judit Bekker. I liked how this dashboard presented the key takeaways clearly, and wanted my final visualization to do the same.
+- [Books I've Read (2011-2021)](https://public.tableau.com/app/profile/judit.bekker/viz/books_brown/Books) — a Tableau sunburst chart by Alex Chapman. I loved how inviting and captivating the visual of the sunburst visual was, and wanted to adapt it in one of my visualizations.
+
+Now, take a look at the trends and insights from my last 10 years in books below:
+
+- My favourite authors matched up with my expectations. I was not surprised to see Elena Ferrante's books consistently appear in my top-read authors. **[3]**
+- I was surprised to find that I'm currently reading almost as many print books (paperbacks and hardcovers) as I am Kindle editions, as I thought I read a lot more on Kindle these days.
+- I didn't include this in the charts, but I noticed a slight upward trend in my ratings over time. My guess is that I'm getting better at abandoning books I don't like. As StoryGraph summarizes it in their tagline "because life's too short for a book you're not in the mood for"
+- Finally, I was also surprised that most of the books I've read were written in the 2010s, which may be a good thing for non-fiction books, as they offer up-to-date information.
+
+**You can interact with the full story on Tableau Public [here](https://public.tableau.com/app/profile/faith5698/viz/MyLast10YearsinBooks_16803908121580/MyReadingStory).**
+
+Overall, while my initial plans for the visualizations were more ambitious than what the data allowed, I'm still pleased about the [intermediate deliverable](https://x.com/Conaw/status/1390185361553469446) I ended up with. Who knows what version 3, or 4, or 5 of this will look like in the future when I have access to more sophisticated data!
+
+### Notes
+
+**[1]** For example, two of the most impactful non-fiction books I read last year were Four Thousand Weeks and The Pathless Path. I read the first at a particularly tumultuous point in my life when I was chronically busy and overwhelmed with all the things I wanted or needed to do. It was precisely the [right time](https://x.com/imani__r/status/1518554005990830080) for me to step back engage with Oliver Burkeman's ideas about re-thinking our relationship to time. And a few months afterwards I read The Pathless Path around when I was thinking of leaving my job to go on a sabbatical. That too felt like exactly the right time to read this book. Reading about Paul Millerd's journey gave me the confidence/permission-slip to step off the treadmill and carve out a [bold new path](https://x.com/imani__r/status/1576362036186923008). Contrast this with Americanah, a book I've read twice. First, in my sophomore year in college when the themes around race and identity felt especially relevant to my own experience as a new immigrant in the U.S. When I re-read it in early 2021, it didn't quite hit the mark.
+
+**[2]** Below is a chart that breaks down the books I've read by genre since 2014, which illustrates some of the additional data categories available on StoryGraph. I was a little surprised (okay, maybe even a tad embarrassed) to see the "self help" genre up there in the top 3, with a total of 14 books, most of which I've read in the past two years. But I suppose there’s nothing wrong with a little self-improvement, after all. Some of the books in this category have really transformed how I approach life, like *The Pathless Path, Four Thousand Weeks, Focusing, Creativity: A Short and Cheerful guide,* and *Steal Like and Artist.*
+
+![class=img-container image-medium, alt=Bar graph from The StoryGraph showing genres of books I've read](/assets/img/storygraph_my_genres_2022.png)
+
+**[3]** Ever since I discovered Ferrante trough the [My Brilliant Friend series](https://www.goodreads.com/series/87018-l-amica-geniale), I’ve been truly enamoured by her writing, and I unreservedly recommend her books to anyone interested in sharp, candid, piercing exploration of human relationships.

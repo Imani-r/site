@@ -8,7 +8,7 @@ let drawsPerFrame;
 let densityFactor = 0.2; // Increase for faster fill
 
 function preload() {
-  wildFlowers1 = loadImage("assets/wildflowers_pinterest_drawing.jpg");
+  wildFlowers1 = loadImage("assets/img/wildflowers_pinterest_drawing.jpg");
 }
 
 function setup() {
@@ -33,11 +33,11 @@ function setup() {
   // Clustered bloom - multiple clusters per frame
   function draw() {
     image(garden, 0, 0);
-  
+
     // Draw every frame (no skip)
     let clusterCount = 50; // Spread across tiles
     let clusterSize = 1;   // Burst per cluster
-  
+
     for (let i = 0; i < clusterCount; i++) {
       let j = floor(random(imageCount));
       for (let k = 0; k < clusterSize; k++) {
@@ -45,12 +45,12 @@ function setup() {
       }
     }
   }
-  
+
 
   // Clustered bloom - One cluster per frame
 // function draw() {
 //   image(garden, 0, 0);
-  
+
 //   let j = floor(random(imageCount));
 //   let clusterSize = floor(random(3, 27));
 //   for (let k = 0; k < clusterSize; k++) {
