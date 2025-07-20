@@ -27,3 +27,4 @@ I also found that December is the most common month for conception, with 26 of t
   by Jacob Olsufka
 
 **[2]** I estimated conception dates by subtracting 280 days (the equivalent of 40 weeks) from the birthday dates.
+
