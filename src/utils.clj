@@ -8,7 +8,7 @@
     [javax.xml.transform OutputKeys TransformerFactory]
     [javax.xml.transform.stream StreamResult StreamSource]))
 
-; ----------------------------------------------------------------------------------------------------------------------
+; --- HTML -------------------------------------------------------------------------------------------------------------
 
 (defn pphtml
   "That is, 'Pretty-print HTML'.
@@ -26,7 +26,7 @@
       (.transform transformer in out)
       (-> out .getWriter .toString))))
 
-; ----------------------------------------------------------------------------------------------------------------------
+; --- Strings ----------------------------------------------------------------------------------------------------------
 
 (defn strip-leading-substring
   [s substring]
@@ -40,4 +40,20 @@
   (strip-leading-substring "b" "a") := "b"
   (strip-leading-substring "ab" "a") := "b"
   (strip-leading-substring "abc" "a") := "bc"
+  )
+
+(defn internal-href?
+  [href]
+  (let [subdomain-and-domain (re-find #"(?<=^https?://)[^/]+" href)]
+    (or (nil? subdomain-and-domain)
+        (str/includes? subdomain-and-domain "wildinginprogress.com"))))
+
+(tests
+  (internal-href? "http://wildinginprogress.com") := true
+  (internal-href? "https://wildinginprogress.com") := true
+  (internal-href? "https://www.wildinginprogress.com") := true
+  (internal-href? "https://www.subdomain.wildinginprogress.com") := true
+  (internal-href? "/some-local-link") := true
+  (internal-href? "some-local-link") := true
+  (internal-href? "https://public.tableau.com/...") := false
   )
