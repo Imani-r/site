@@ -151,17 +151,17 @@
              "and share knowledge while delivering creative, analytical solutions for clients.")]]])
 
 (defn garden-page []
-  (let [n 5
+  (let [n 20
         last-n-posts (->> (fs/list-dir base-posts-path)
                           (map fs/file-name)
                           (sort #(compare %2 %1))
-                          (take 5 #_n)
+                          (take n)
                           (vec))
         last-n-titles (mapv #(read-post-title (str base-posts-path %)) last-n-posts)
         last-n-hrefs (mapv #(str "/" base-rendered-posts-path (calc-post-name %) ".html") last-n-posts)]
 
     [:div {:class "content-wrapper"}
-     [:ul (for [i (range n)]
+     [:ul (for [i (range (count last-n-posts))]
             [:li
              [:a {:href (get last-n-hrefs i)}
               (get last-n-titles i)]])]]))
@@ -175,7 +175,7 @@
 
 (defn now-page []
   [:div {:class "content-wrapper"}
-   [:p "Coming soon"]])
+   [:p "Reading - and thoroughly enjoying! - Peter Watts' " [:i "Blindsight"]]])
 
 (defn portfolio-page []
   [:div {:class "content-wrapper"}
@@ -243,7 +243,8 @@
    (head title (:p5? metadata))
    [:body
     (navbar :garden)
-    hiccup-body]])
+    [:div {:class "content-wrapper"}
+     hiccup-body]]])
 
 
 ; --- REPL fn helpers (not called directly) ----------------------------------------------------------------------------
@@ -314,7 +315,7 @@
   "That is, 'render page or post'.
 
   To render a top-level index page, pass that page's keyword ID (e.g. `:home`). To render a post, pass the filename of
-  its markdown file in `garden_posts/` (e.g. `\"001_how_common_is_your_birthday_uk_edition\"). Including the file
+  its markdown file in `garden_posts/` (e.g. `\"001_how_common_is_your_birthday_uk_edition\"`). Including the file
   extension (`.md` and `.html` are supported) is optional.
 
   The second argument, `opts`, is an optional map. Include `:safe? false` to (over)write the HTML output to a file
@@ -365,16 +366,29 @@
         ; Return the output filepath
         output-path))))
 
+(defn render-all!
+  [& {:as render!-opts}]
+  (let [filenames (->> (fs/list-dir "garden_posts")
+                       (mapv (fn [f]
+                               (peek (str/split (str f) #"/")))))]
+    (doseq [filename filenames]
+      (render! filename render!-opts))
+
+     (str "Successfully rendered " (count filenames) " Garden posts")))
+
 (comment
-  (render! :about #_{:safe? false})
-  (render! :garden #_{:safe? false})
+  (render! :about {:safe? false})
+  (render! :garden {:safe? false}) 
   (render! :home #_{:safe? false})
   (render! :now #_{:safe? false})
   (render! :portfolio #_{:safe? false})
 
-  (render! "001_how_common_is_your_birthday_uk_edition" #_{:safe? false})
-  (render! "002_my_last_10_years_in_books" #_{:safe? false})
-  (render! "003_are_you_drinking_a_safe_amount_of_caffeine_tea_edition" #_{:safe? false})
-  (render! "004_designing_deadly_flowers_in_tableau" #_{:safe? false})
-  (render! "005_rhodonea_curve_rose_1" #_{:safe? false})
+  (render! "001_how_common_is_your_birthday_uk_edition" {:safe? false})
+  (render! "002_my_last_10_years_in_books" {:safe? false})
+  (render! "003_are_you_drinking_a_safe_amount_of_caffeine_tea_edition" {:safe? false})
+  (render! "004_designing_deadly_flowers_in_tableau" {:safe? false})
+  (render! "005_rhodonea_curve_rose_1" {:safe? false})
+  (render! "006_reading_blindsight" {:safe? false})
+
+  (render-all! {:safe? false})
   )
