@@ -26,7 +26,7 @@ function draw() {
   beginShape();
   noFill();
   stroke("#000000");
-  strokeWeight(3);
+  strokeWeight(1);
   
   for (var a = 0; a < TWO_PI * 10; a += 0.02) {
     var r = 150 * cos(k * a);
