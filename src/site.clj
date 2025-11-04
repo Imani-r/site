@@ -13,7 +13,7 @@
 
 (def pages
   "Ordered as they will be rendered by the `navbar` function, below."
-  [:garden :portfolio :home :about :now])
+  [:garden :portfolio :home :about #_:now])
 (def pages-set (set pages))
 (def p5-pages-set #{:home})
 
@@ -209,6 +209,7 @@
    [:meta {:charset "utf8"}]
    [:meta {:name "viewport", :content "width=device-width, initial-scale=1"}]
    [:title title]
+   [:link {:rel "icon", :type "image/png", :href "/assets/img/favicon_small.png"}]
    [:link {:rel "stylesheet", :href "/assets/css/reset.css"}]
    [:link {:rel "stylesheet", :href "/assets/css/style.css"}]
    (when p5? [:script {:src "https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/p5.min.js"}])
@@ -379,9 +380,9 @@
 (comment
   (render! :about {:safe? false})
   (render! :garden {:safe? false}) 
-  (render! :home #_{:safe? false})
-  (render! :now #_{:safe? false})
-  (render! :portfolio #_{:safe? false})
+  (render! :home {:safe? false})
+  (render! :now {:safe? false})
+  (render! :portfolio {:safe? false})
 
   (render! "001_how_common_is_your_birthday_uk_edition" {:safe? false})
   (render! "002_my_last_10_years_in_books" {:safe? false})
