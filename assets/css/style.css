@@ -43,7 +43,13 @@ ul li {
 
 /* Change the color of links on hover */
 .topnav a:hover {
-  color: #488D96;
+  color: #488d96;
+}
+
+/* Logo styling */
+.topnav .logo {
+  height: 2em;
+  vertical-align: middle;
 }
 
 /* Styling for home page */
@@ -74,7 +80,6 @@ canvas {
   padding: 1rem;
   pointer-events: none; /* optional: makes the text non-interactive */
 }
-
 
 .homingquotes h2 {
   font-family: var(--global-font);

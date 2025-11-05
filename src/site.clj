@@ -13,7 +13,7 @@
 
 (def pages
   "Ordered as they will be rendered by the `navbar` function, below."
-  [:garden :portfolio :home :about #_:now])
+  [:home :garden :portfolio :about #_:now])
 (def pages-set (set pages))
 (def p5-pages-set #{:home})
 
@@ -199,10 +199,15 @@
    (->> pages
         (map (fn [p]
                [:a {:href (page->href p)}
-                (if (= p page)
-                  [:h1 (page->title p)]
-                  (page->title p))])))])
-
+                ; cond->> is like ->> + cond
+                (cond->> (if (= p :home)
+                           [:img {:src   "/assets/img/logo.png" 
+                                  :alt   "Wilding in Progress"
+                                  :class "logo"}]
+                           (page->title p))
+                  
+                  (= p page)
+                  (conj [:h1] ,,,))])))])
 
 (defn head [title p5?]
   [:head
@@ -281,13 +286,21 @@
   - alt    --> alt text for the image"
   [form]
   (if (and (vector? form) (= :img (first form)))
-    (let [m (-> (get-in form [1 :alt])
-                (str/split #"\s*,\s*") ; split on commas
-                (->> (mapv #(str/split % #"=")) ; split each item again on =
-                     (into {})) ; put these key/value pairs into a map
-                (update-keys keyword))] ; keywordize the map's keys
-      [:div {:id (:id m), :class (str "img-container " (:class m))}
-       (assoc-in form [1 :alt] (:alt m))])
+    (let [attr-m         (get form 1)
+          alt-text       (get-in form [1 :alt])
+          split-alt-text (str/split alt-text #"\s*,\s*")
+          attr-m         (if (= [alt-text] split-alt-text)
+                           ; A. Normal hiccup --> just use given attr-m
+                           attr-m
+                           ; B. Funky markdown syntax --> parse it
+                           (-> split-alt-text
+                               (->> (mapv #(str/split % #"=")) ; split each item again on =
+                                    (into {})) ; put these key/value pairs into a map
+                               (update-keys keyword))) ; keywordize the map's keys
+          ]
+      [:div {:id    (:id attr-m)
+             :class (str "img-container " (:class attr-m))}
+       (assoc-in form [1 :alt] (:alt attr-m))])
 
     form))
 
@@ -345,6 +358,7 @@
                          (cond-> (slurp full-post-path)
                            (= ".md" ext)   (parse-md->hiccup-body+title+metadata full-post-path)
                            (= ".html" ext) (parse-html->hiccup-body+title+metadata full-post-path)
+                           
                            :always         (wrap-garden-post-boilerplate)
                            :always         (post-process-generated-hiccup)))
         ; Side-effect: print hiccup, when the :print-hiccup? option is true
@@ -378,11 +392,14 @@
      (str "Successfully rendered " (count filenames) " Garden posts")))
 
 (comment
-  (render! :about {:safe? false})
-  (render! :garden {:safe? false}) 
-  (render! :home {:safe? false})
-  (render! :now {:safe? false})
-  (render! :portfolio {:safe? false})
+  (do 
+    (render! :about {:safe? false})
+    (render! :garden {:safe? false}) 
+    (render! :home {:safe? false})
+    #_(render! :now {:safe? false})
+    (render! :portfolio {:safe? false})
+    )
+
 
   (render! "001_how_common_is_your_birthday_uk_edition" {:safe? false})
   (render! "002_my_last_10_years_in_books" {:safe? false})
