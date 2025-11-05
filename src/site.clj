@@ -127,28 +127,48 @@
 ; --- hiccup: index pages ----------------------------------------------------------------------------------------------
 
 (defn about-page []
-  [:div {:class "content-wrapper"}
-   [:h1 "About"]
+  [:div {:class "content-wrapper"} 
    [:div {:class "float-text-around-image"}
     [:div {:id "profile_photo", :class "img-container"}
      [:img {:src "/assets/img/profile_photo.jpeg"
             :alt "Profile Picture: Standing next to a colourful wall in sunny Lisbon"}]]
 
     [:p (str
-          "When it comes to data visualisation, Faith believes that beauty is not a "
-          "frill— it's what lures people in and invites them to dig deeper and "
-          "engage with the underlying information. In her work, she strives to "
-          "create data visualisations that are not only supported by rigorous "
-          "analysis, but are also visually appealing. This combination is crucial "
-          "because beauty without insight can be misleading, and insight without "
-          "beauty is unremarkable.")]
+         "When it comes to data visualisation, Faith believes that beauty is not a "
+         "frill—it's what lures people in and invites them to dig deeper and "
+         "engage with the underlying information. In her work, she strives to "
+         "create data visualisations that are not only supported by rigorous "
+         "analysis, but are also visually appealing. This combination is crucial "
+         "because beauty without insight can be misleading, and insight without "
+         "beauty is unremarkable.")]
 
     [:p (str "After graduating from Dartmouth College with an Economics degree, "
              "Faith began her career as a Product Lead at a global non-profit organization. "
              "There, her exposure to data analytics and UX/UI design sparked her interest in "
              "visual storytelling through data. She joined The Data School to further develop "
              "her expertise in a collaborative environment where she could both learn "
-             "and share knowledge while delivering creative, analytical solutions for clients.")]]])
+             "and share knowledge while delivering creative, analytical solutions for clients.")]
+
+    [:p (str "At The Data School, Faith has worked with clients spanning diverse sectors: "
+             "high-end retail brands, major transportation networks, financial services, and "
+             "telecommunications. Her key achievements include:")]
+    
+    [:ul 
+     [:li [:strong "Reporting & Dashboards: "] "Currently defining key metrics and standardizing reporting; "
+      "building Tableau dashboards to track website performance, making it easier for stakeholders to monitor "
+      "business goals"]
+     [:li [:strong "Training & Upskilling: "] "Designed and led a Tableau & Tableau Prep training for "
+      "350 colleagues, delivering 2,500 learning hours. Multiple trained colleagues progressed to become "
+      "internal trainers, expanding the program's impact"]
+     [:li [:strong "Program Development: "] "Built the Tableau Skills Accelerator, a self-paced course "
+      "that taught technical and visualization skills to 1,500 staff members, saving the company 150 workdays annually"]
+     [:li [:strong "Community Building: "] "Founded a Data Book Club to cultivate a dynamic BI community. "
+      "A highlight was hosting Alberto Cairo, author of \"How Charts Lie,\" for a discussion that drew 95 "
+      "people and earned a 4.8/5 rating"]]
+ 
+    [:p "Outside of work, Faith enjoys practising her street photography, dancing, and creating art with code."]
+
+    ]])
 
 (defn garden-page []
   (let [n 20
