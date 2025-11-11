@@ -1,16 +1,26 @@
 <!-- {:title "Sketch: Rhodonea Curve (Rose)", :p5? true} -->
 
 <p>
-  I first came across the concept of a
+  I first stumbled across the concept of a
   <a href="https://en.wikipedia.org/wiki/Rose_(mathematics)" target="_blank"
     >rhodonea curve</a
   >
-  when I was trying to figure out how to draw flowers in p5.js. Imagine a
-  drawing line around a circle, joining together points, where the position of
-  each point is determined by its distance from the center. The point moves
-  around a circle while its distance from the center goes up and down like a
-  wave, you’ll get petals. Incidentally, a rhodonea curve is also called a
-  <strong>rose</strong>!
+  while trying to figure out how to draw flowers in p5.js. A rhodonea curve is,
+  in essence, a sine (or cosine) wave traced around a central point. Imagine
+  plotting points on a piece of paper, each one placed a little closer or
+  farther from a center point as you move around in a circle. When you connect
+  those points, the line loops around that center, moving in and out in a
+  smooth, wave-like pattern that forms a shape resembling a flower petal.
+  Fittingly, the rhodonea curve is also called a <strong>rose</strong>.
+</p>
+
+<p>
+  A rose is specified by the equation:
+  <em>r = cos(kθ)</em>, where <em>k</em> is the number of rotations (or total
+  angular range) required for a rhodonea curve to complete one full closed
+  figure. The value of <em>k</em> can be expressed as a ratio <em>k = n/d</em>.
+  I thought it would be fun to draw the petals I found most interesting by
+  selecting certain combinations of <em>n</em> and <em>d</em>.
 </p>
 
 <p>Here's my first attempt, in black and white:</p>
