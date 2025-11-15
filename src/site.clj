@@ -263,13 +263,24 @@
       (navbar page)
       hiccup-body]]))
 
+;; (defn wrap-garden-post-boilerplate
+;;   [{:keys [:hiccup-body :title :metadata]}]
+;;   [:html {:lang "en"}
+;;    (head title (:p5? metadata))
+;;    [:body
+;;     (navbar :garden)
+;;     [:div {:class "content-wrapper"}
+;;      hiccup-body]]])
+
 (defn wrap-garden-post-boilerplate
   [{:keys [:hiccup-body :title :metadata]}]
   [:html {:lang "en"}
    (head title (:p5? metadata))
    [:body
     (navbar :garden)
-    [:div {:class "content-wrapper"}
+    [:div {:class (if (:p5? metadata)     ; ← Check if it's a p5 sketch
+                    "sketch-post"          ; ← Use sketch-post for p5 sketches
+                    "content-wrapper")}    ; ← Use content-wrapper for regular posts
      hiccup-body]]])
 
 
