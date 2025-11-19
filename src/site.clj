@@ -114,14 +114,14 @@
 (comment
   (read-post-metadata "garden_posts/001_how_common_is_your_birthday_uk_edition.md")
   ; => {:some "metadata"}
-  (read-post-metadata "garden_posts/005_rhodonea_curve_rose_1.html")
-  ; => {:title "Sketch: Rhodonea Curve Rose 1", :p5? true}
+  (read-post-metadata "garden_posts/005_rhodonea_curve_rose.html")
+  ; => {:title "Sketch: Rhodonea Curve (Rose)", :p5? true}
 
   (read-post-title "garden_posts/001_how_common_is_your_birthday_uk_edition.md")
   ; => "How Common is Your Birthday? UK Edition"
 
-  (read-post-title "garden_posts/005_rhodonea_curve_rose_1.html")
-  ; => "Sketch: Rhodonea Curve Rose 1"
+  (read-post-title "garden_posts/005_rhodonea_curve_rose.html")
+  ; => "Sketch: Rhodonea Curve (Rose)"
   )
 
 ; --- hiccup: index pages ----------------------------------------------------------------------------------------------
@@ -429,14 +429,14 @@
     (render! :home {:safe? false})
     #_(render! :now {:safe? false})
     (render! :portfolio {:safe? false})
-    )
+    ) 
 
 
   (render! "001_how_common_is_your_birthday_uk_edition" {:safe? false})
   (render! "002_my_last_10_years_in_books" {:safe? false})
   (render! "003_are_you_drinking_a_safe_amount_of_caffeine_tea_edition" {:safe? false})
   (render! "004_designing_deadly_flowers_in_tableau" {:safe? false})
-  (render! "005_rhodonea_curve_rose_1" {:safe? false})
+  (render! "005_rhodonea_curve_rose" {:safe? false})
   (render! "006_reading_blindsight" {:safe? false})
 
   (render-all! {:safe? false})
