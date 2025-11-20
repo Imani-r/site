@@ -437,7 +437,8 @@
   (render! "003_are_you_drinking_a_safe_amount_of_caffeine_tea_edition" {:safe? false})
   (render! "004_designing_deadly_flowers_in_tableau" {:safe? false})
   (render! "005_rhodonea_curve_rose" {:safe? false})
-  (render! "006_reading_blindsight" {:safe? false})
+  (render! "006_curves_with_straight_lines" {:safe? false})
+  (render! "007_pi_art" {:safe? false}) 
 
   (render-all! {:safe? false})
   )
