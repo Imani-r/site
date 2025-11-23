@@ -1,4 +1,49 @@
 <!DOCTYPE html><html lang="en"><head><meta charset="utf8" /><meta content="width=device-width, initial-scale=1" name="viewport" /><title>Pi Art</title><link href="/assets/img/favicon_small.png" rel="icon" type="image/png" /><link href="/assets/css/reset.css" rel="stylesheet" /><link href="/assets/css/style.css" rel="stylesheet" /><script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/p5.min.js"></script></head><body><div class="topnav"><a href="/index.html"><div class="img-container logo"><img alt="Wilding in Progress" class="logo" src="/assets/img/logo.png" /></div></a><a href="/assets/html/garden.html"><h1>The Garden</h1></a><a href="/assets/html/portfolio.html">Portfolio</a><a href="/assets/html/about.html">About</a></div><div class="sketch-post"><!-- {:title "Pi Art", :p5? true} -->
 
+<h1>Pi Art</h1>
+
+<p>
+  In my continued quest to create curved art pieces using only straight lines, I
+  recently came across this
+  <a
+    href="https://public.tableau.com/app/profile/ken.flerlage/viz/PiArt_0/PiArt"
+    target="_blank"
+    rel="noopener noreferrer"
+    >series of Pi Art pieces</a
+  >
+  created on Tableau and was so enamoured by Chris Love's design below.
+</p>
+
+<p>
+  And as one does following such moments of awe, I tried to reverse-engineer it.
+</p>
+
+<p>
+  The Tableau workbook was, thankfully 😌, available for download. But just
+  looking at the data structure, I couldn't make any sense of it. So I worked
+  from two clues: the caption ("The visualisation shows the first 5,000 digits
+  of Pi... Each line connects one digit to the next. Each point expands outwards
+  as the digits progress") and the fact that the piece is made entirely of
+  straight lines, even though the viz as a whole seems to have curves in it.
+</p>
+
+<img
+  src="/assets/img/pi_art_cl_cropped.png"
+  alt="Chris Love's pi art visualization"
+/>
+
+<p>Below is my recreation:</p>
+
+<img src="/assets/img/pi_art_fr.png" alt="My pi art recreation" />
+
+<p>
+  I also thought to take advantage of p5.js's versatility to add motion, slowing
+  down the first fifteen or so lines to let you see exactly how they're drawn.
+  My version also differs in a couple of ways: it takes up a larger canvas
+  (after some experimentation, I ended up using a little over 7,000 digits of
+  pi), and the lines contract inward rather than expanding outward as the digits
+  progress.
+</p>
+
 <script src="/assets/js/12_pi_art.js"></script>
 </div></body></html>
